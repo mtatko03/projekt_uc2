@@ -1,5 +1,5 @@
 # uec2_example_project_RnD
-
+##czesc
 ## Klonowanie repozytorium
 
 ```bash
