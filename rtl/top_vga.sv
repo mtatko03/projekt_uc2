@@ -6,7 +6,7 @@
  * Modified by:
  * 2023  AGH University of Science and Technology
  * MTM UEC2
- * Piotr Kaczmarczyk
+ * Agnieszka Wroblewska, Magdalena Tatko
  *
  * Description:
  * The project top module.

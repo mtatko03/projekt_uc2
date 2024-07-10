@@ -1,7 +1,7 @@
 /**
  * Copyright (C) 2023  AGH University of Science and Technology
  * MTM UEC2
- * Author: Piotr Kaczmarczyk
+ * Author: Agnieszka Wroblewska, Magdalena Tatko
  *
  * Description:
  * Package with vga related constants.
@@ -12,6 +12,7 @@ package vga_pkg;
 // Parameters for VGA Display 1024 x 768 @ 60fps using a 40 MHz clock;
 localparam HOR_PIXELS = 1024;
 localparam VER_PIXELS = 768;
+
 localparam HOR_TOTAL_TIME = 1344;
 localparam HOR_BLANK_START = 1024;
 localparam HOR_SYNC_START = 1048;
