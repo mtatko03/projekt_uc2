@@ -4,6 +4,12 @@
 # MTM UEC2
 # Author: Piotr Kaczmarczyk
 #
+#
+# Modified by:
+# 2024 AGH University of Science and Technology
+# MTM UEC2
+# Agnieszka Wroblewska, Magdalena Tatko
+#
 # Description:
 # Load a bitstream to a Xilinx FPGA using Vivado in tcl mode
 # Run from the project root directory.

@@ -4,6 +4,12 @@
 # MTM UEC2
 # Author: Piotr Kaczmarczyk
 #
+#
+# Modified by:
+# 2024 AGH University of Science and Technology
+# MTM UEC2
+# Agnieszka Wroblewska, Magdalena Tatko
+#
 # Description:
 # This script runs simulations outside Vivado, making them faster.
 # For usage details run the script with no arguments.

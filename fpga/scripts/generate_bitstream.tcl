@@ -2,6 +2,11 @@
 # MTM UEC2
 # Author: Piotr Kaczmarczyk
 #
+# Modified by:
+# 2024 AGH University of Science and Technology
+# MTM UEC2
+# Agnieszka Wroblewska, Magdalena Tatko
+#
 # Description:
 # tcl script being sourced to Vivado to build a project from sources and generate a bitstream.
 # Some project details and paths to the source files are read from project_details.tcl

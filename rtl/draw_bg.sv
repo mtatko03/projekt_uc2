@@ -1,7 +1,12 @@
 /**
  * Copyright (C) 2023  AGH University of Science and Technology
  * MTM UEC2
- * Author: Agnieszka Wroblewska, Magdalena Tatko
+ * Author:Piotr Kaczmarczyk
+ * 
+ * Modified by:
+ * 2024 AGH University of Science and Technology
+ * MTM UEC2
+ * Agnieszka Wroblewska, Magdalena Tatko
  *
  * Description:
  * Draw background.

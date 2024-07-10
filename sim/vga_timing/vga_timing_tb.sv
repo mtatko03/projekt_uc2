@@ -3,6 +3,11 @@
  * MTM UEC2
  * Author: Piotr Kaczmarczyk
  *
+ * Modified by:
+ * 2024 AGH University of Science and Technology
+ * MTM UEC2
+ * Agnieszka Wroblewska, Magdalena Tatko
+ *
  * Description:
  * Testbench for vga_timing module.
  */

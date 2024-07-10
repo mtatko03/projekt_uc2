@@ -2,6 +2,12 @@
 # MTM UEC2
 # Author: Piotr Kaczmarczyk
 #
+# Modified by:
+# 2024 AGH University of Science and Technology
+# MTM UEC2
+# Agnieszka Wroblewska, Magdalena Tatko
+#
+#
 # Description:
 # List of files and directories not to be tracked by git.
 # They will be removed when cleaning the project directory.

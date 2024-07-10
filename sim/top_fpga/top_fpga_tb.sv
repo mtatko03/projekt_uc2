@@ -8,6 +8,11 @@
  * MTM UEC2
  * Piotr Kaczmarczyk
  *
+ * Modified by:
+ * 2024 AGH University of Science and Technology
+ * MTM UEC2
+ * Agnieszka Wroblewska, Magdalena Tatko
+ *
  * Description:
  * Testbench for top_fpga.
  * Thanks to the tiff_writer module, an expected image

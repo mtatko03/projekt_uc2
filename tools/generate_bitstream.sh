@@ -4,6 +4,12 @@
 # MTM UEC2
 # Author: Piotr Kaczmarczyk
 #
+#
+# Modified by:
+# 2024 AGH University of Science and Technology
+# MTM UEC2
+# Agnieszka Wroblewska, Magdalena Tatko
+#
 # Description:
 # This script runs Vivado in tcl mode and sources an apropriate tcl file to run
 # all the steps to generate bitstream. When finished, the bitsream is copied to

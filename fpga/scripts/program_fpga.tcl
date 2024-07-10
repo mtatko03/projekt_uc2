@@ -2,6 +2,11 @@
 # MTM UEC2
 # Author: Piotr Kaczmarczyk
 #
+# Modified by:
+# 2024 AGH University of Science and Technology
+# MTM UEC2
+# Agnieszka Wroblewska, Magdalena Tatko
+#
 # Description:
 # tcl file sourced to Vivado to load the bitstream specified in the argument to an FPGA.
 
