@@ -42,7 +42,6 @@ localparam CLK_PERIOD = 10;     // 100 MHz
  */
 
 logic clk, rst;
-wire pclk;
 wire vs, hs;
 wire [3:0] r, g, b;
 
@@ -68,8 +67,7 @@ top_vga_basys3 dut (
     .Hsync(hs),
     .vgaRed(r),
     .vgaGreen(g),
-    .vgaBlue(b),
-    .JA1(pclk)
+    .vgaBlue(b)
 );
 
 tiff_writer #(

@@ -17,12 +17,7 @@
 module vga_timing (
     input  logic clk,
     input  logic rst,
-    output logic [10:0] vcount,
-    output logic vsync,
-    output logic vblnk,
-    output logic [10:0] hcount,
-    output logic hsync,
-    output logic hblnk
+    vga_if.out vga_out
 );
 
 import vga_pkg::*;
@@ -48,36 +43,36 @@ import vga_pkg::*;
 
 always_ff@(posedge clk) begin
     if(rst) begin
-        hcount <= 0;
-        vcount <= 0;
-        hblnk <= 0;
-        vblnk <= 0;
-        hsync <= 0;
-        vsync <= 0;
+        vga_out.hcount <= 0;
+        vga_out.vcount <= 0;
+        vga_out.hblnk <= 0;
+        vga_out.vblnk <= 0;
+        vga_out.hsync <= 0;
+        vga_out.vsync <= 0;
     end
     else begin
-        hcount <= hcount_nxt; 
-        vcount <= vcount_nxt;
-        hblnk <= hblnk_nxt;
-        vblnk <= vblnk_nxt;
-        hsync <= hsync_nxt;
-        vsync <= vsync_nxt;
+        vga_out.hcount <= hcount_nxt; 
+        vga_out.vcount <= vcount_nxt;
+        vga_out.hblnk <= hblnk_nxt;
+        vga_out.vblnk <= vblnk_nxt;
+        vga_out.hsync <= hsync_nxt;
+        vga_out.vsync <= vsync_nxt;
     end
 end
 
 always_comb begin
-    if(hcount == HOR_TOTAL_TIME -1) begin
-        if(vcount == VER_TOTAL_TIME -1) begin
+    if(vga_out.hcount == HOR_TOTAL_TIME -1) begin
+        if(vga_out.vcount == VER_TOTAL_TIME -1) begin
             vcount_nxt=0;
         end
         else begin
-            vcount_nxt= vcount + 1;
+            vcount_nxt= vga_out.vcount + 1;
         end
         hcount_nxt=0;
     end 
     else begin
-        hcount_nxt = hcount +1;
-        vcount_nxt = vcount;
+        hcount_nxt = vga_out.hcount +1;
+        vcount_nxt = vga_out.vcount;
     end
 
     

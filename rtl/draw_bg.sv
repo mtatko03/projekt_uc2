@@ -18,22 +18,8 @@
 module draw_bg (
     input  logic clk,
     input  logic rst,
-
-    input  logic [10:0] vcount_in,
-    input  logic        vsync_in,
-    input  logic        vblnk_in,
-    input  logic [10:0] hcount_in,
-    input  logic        hsync_in,
-    input  logic        hblnk_in,
-
-    output logic [10:0] vcount_out,
-    output logic        vsync_out,
-    output logic        vblnk_out,
-    output logic [10:0] hcount_out,
-    output logic        hsync_out,
-    output logic        hblnk_out,
-
-    output logic [11:0] rgb_out
+    vga_if.in vga_inbg,
+    vga_if.out vga_outbg
 );
 
 import vga_pkg::*;
@@ -52,41 +38,41 @@ logic [11:0] rgb_nxt;
 
 always_ff @(posedge clk) begin : bg_ff_blk
     if (rst) begin
-        vcount_out <= '0;
-        vsync_out  <= '0;
-        vblnk_out  <= '0;
-        hcount_out <= '0;
-        hsync_out  <= '0;
-        hblnk_out  <= '0;
-        rgb_out    <= '0;
+        vga_outbg.vcount <= '0;
+        vga_outbg.vsync  <= '0;
+        vga_outbg.vblnk  <= '0;
+        vga_outbg.hcount <= '0;
+        vga_outbg.hsync  <= '0;
+        vga_outbg.hblnk  <= '0;
+        vga_outbg.rgb    <= '0;
     end else begin
-        vcount_out <= vcount_in;
-        vsync_out  <= vsync_in;
-        vblnk_out  <= vblnk_in;
-        hcount_out <= hcount_in;
-        hsync_out  <= hsync_in;
-        hblnk_out  <= hblnk_in;
-        rgb_out    <= rgb_nxt;
+        vga_outbg.vcount <= vga_inbg.vcount;
+        vga_outbg.vsync  <= vga_inbg.vsync;
+        vga_outbg.vblnk  <= vga_inbg.vblnk;
+        vga_outbg.hcount <= vga_inbg.hcount;
+        vga_outbg.hsync  <= vga_inbg.hsync;
+        vga_outbg.hblnk <= vga_inbg.hblnk;
+        vga_outbg.rgb   <= vga_inbg.rgb;
     end
 end
 
 always_comb begin : bg_comb_blk
-    if (vblnk_in || hblnk_in) begin             // Blanking region:
-        rgb_nxt = 12'h0_0_0;                    // - make it it black.
-    end else begin                              // Active region:
-        if (vcount_in == 0)                     // - top edge:
-            rgb_nxt = 12'hf_f_0;                // - - make a yellow line.
-        else if (vcount_in == VER_PIXELS - 1)   // - bottom edge:
-            rgb_nxt = 12'hf_0_0;                // - - make a red line.
-        else if (hcount_in == 0)                // - left edge:
-            rgb_nxt = 12'h0_f_0;                // - - make a green line.
-        else if (hcount_in == HOR_PIXELS - 1)   // - right edge:
-            rgb_nxt = 12'h0_0_f;                // - - make a blue line.
+    if (vga_inbg.vblnk || vga_inbg.hblnk) begin         // Blanking region:
+        rgb_nxt = 12'h0_0_0;                            // - make it it black.
+    end else begin                                      // Active region:
+        if (vga_inbg.vcount == 0)                       // - top edge:
+            rgb_nxt = 12'hf_f_0;                
+        else if (vga_inbg.vcount == VER_PIXELS - 1)       // - bottom edge:
+            rgb_nxt = 12'hf_0_0;                    
+        else if (vga_inbg.hcount == 0)                    // - left edge:
+            rgb_nxt = 12'h0_f_0;                
+        else if (vga_inbg.hcount == HOR_PIXELS - 1)       // - right edge:
+            rgb_nxt = 12'h0_0_f;                
 
-        // Add your code here.
 
-        else                                    // The rest of active display pixels:
-            rgb_nxt = 12'h8_8_8;                // - fill with gray.
+
+        else                                            // The rest of active display pixels:
+            rgb_nxt = 12'h8_8_8;                        // - fill with gray.
     end
 end
 

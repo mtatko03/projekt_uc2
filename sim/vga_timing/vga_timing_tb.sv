@@ -23,7 +23,7 @@ import vga_pkg::*;
  *  Local parameters
  */
 
-localparam CLK_PERIOD = 25;     // 40 MHz
+localparam CLK_PERIOD = 15.38;     // 65 MHz
 
 
 /**
@@ -33,10 +33,7 @@ localparam CLK_PERIOD = 25;     // 40 MHz
 logic clk;
 logic rst;
 
-wire [10:0] vcount, hcount;
-wire        vsync,  hsync;
-wire        vblnk,  hblnk;
-
+vga_if if_tb();
 
 /**
  * Clock generation
@@ -67,12 +64,7 @@ end
 vga_timing dut(
     .clk,
     .rst,
-    .vcount,
-    .vsync,
-    .vblnk,
-    .hcount,
-    .hsync,
-    .hblnk
+    .vga_out (if_tb)
 );
 
 /**
@@ -93,7 +85,7 @@ vga_timing dut(
  * Main test
  */
 
-initial begin
+/*initial begin
     @(posedge rst);
     @(negedge rst);
 
@@ -102,6 +94,6 @@ initial begin
     @(negedge vsync)
 
     $finish;
-end
+end*/
 
 endmodule
