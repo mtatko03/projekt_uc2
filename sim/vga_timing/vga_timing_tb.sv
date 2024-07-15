@@ -3,11 +3,6 @@
  * MTM UEC2
  * Author: Piotr Kaczmarczyk
  *
- * Modified by:
- * 2024 AGH University of Science and Technology
- * MTM UEC2
- * Agnieszka Wroblewska, Magdalena Tatko
- *
  * Description:
  * Testbench for vga_timing module.
  */
@@ -23,7 +18,7 @@ import vga_pkg::*;
  *  Local parameters
  */
 
-localparam CLK_PERIOD = 15.38;     // 65 MHz
+localparam CLK_PERIOD = 15.385;     // 65 MHz
 
 
 /**
@@ -33,7 +28,10 @@ localparam CLK_PERIOD = 15.38;     // 65 MHz
 logic clk;
 logic rst;
 
-vga_if if_tb();
+wire [10:0] vcount, hcount;
+wire        vsync,  hsync;
+wire        vblnk,  hblnk;
+
 
 /**
  * Clock generation
@@ -64,7 +62,12 @@ end
 vga_timing dut(
     .clk,
     .rst,
-    .vga_out (if_tb)
+    .vcount,
+    .vsync,
+    .vblnk,
+    .hcount,
+    .hsync,
+    .hblnk
 );
 
 /**
@@ -85,7 +88,7 @@ vga_timing dut(
  * Main test
  */
 
-/*initial begin
+initial begin
     @(posedge rst);
     @(negedge rst);
 
@@ -94,6 +97,6 @@ vga_timing dut(
     @(negedge vsync)
 
     $finish;
-end*/
+end
 
 endmodule

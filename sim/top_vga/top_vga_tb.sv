@@ -8,12 +8,6 @@
  * MTM UEC2
  * Piotr Kaczmarczyk
  *
- *
- * Modified by:
- * 2024 AGH University of Science and Technology
- * MTM UEC2
- * Agnieszka Wroblewska, Magdalena Tatko
- *
  * Description:
  * Testbench for top_vga.
  * Thanks to the tiff_writer module, an expected image
@@ -35,7 +29,7 @@ module top_vga_tb;
  *  Local parameters
  */
 
-localparam CLK_PERIOD = 15.38;     // 65 MHz
+localparam CLK_PERIOD = 15.385;     // 65 MHz
 
 
 /**
@@ -90,8 +84,8 @@ tiff_writer #(
 
 initial begin
     rst = 1'b0;
-    # 1000 rst = 1'b1;
-    # 2000 rst = 1'b0;
+    # 30 rst = 1'b1;
+    # 30 rst = 1'b0;
 
     $display("If simulation ends before the testbench");
     $display("completes, use the menu option to run all.");

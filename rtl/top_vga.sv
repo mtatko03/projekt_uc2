@@ -6,13 +6,7 @@
  * Modified by:
  * 2023  AGH University of Science and Technology
  * MTM UEC2
- * Piotr Kaczmarczyk
- *
- * Modified by:
- * 2024 AGH University of Science and Technology
- * MTM UEC2
  * Agnieszka Wroblewska, Magdalena Tatko
- *
  *
  * Description:
  * The project top module.
@@ -36,21 +30,24 @@ module top_vga (
  */
 
 // VGA signals from timing
-vga_if vga_timing();
+wire [10:0] vcount_tim, hcount_tim;
+wire vsync_tim, hsync_tim;
+wire vblnk_tim, hblnk_tim;
 
 // VGA signals from background
-vga_if vga_bg();
+wire [10:0] vcount_bg, hcount_bg;
+wire vsync_bg, hsync_bg;
+wire vblnk_bg, hblnk_bg;
+wire [11:0] rgb_bg;
 
-// VGA signals from square
-vga_if vga_square();
 
 /**
  * Signals assignments
  */
 
-assign vs = vga_square.vsync;
-assign hs = vga_square.hsync;
-assign {r,g,b} = vga_square.rgb;
+assign vs = vsync_bg;
+assign hs = hsync_bg;
+assign {r,g,b} = rgb_bg;
 
 
 /**
@@ -60,23 +57,33 @@ assign {r,g,b} = vga_square.rgb;
 vga_timing u_vga_timing (
     .clk,
     .rst,
-    .vga_out (vga_timing)
+    .vcount (vcount_tim),
+    .vsync  (vsync_tim),
+    .vblnk  (vblnk_tim),
+    .hcount (hcount_tim),
+    .hsync  (hsync_tim),
+    .hblnk  (hblnk_tim)
 );
 
 draw_bg u_draw_bg (
     .clk,
     .rst,
 
-    .vga_inbg (vga_timing),
-    .vga_outbg (vga_bg)
-);
+    .vcount_in  (vcount_tim),
+    .vsync_in   (vsync_tim),
+    .vblnk_in   (vblnk_tim),
+    .hcount_in  (hcount_tim),
+    .hsync_in   (hsync_tim),
+    .hblnk_in   (hblnk_tim),
 
-draw_square u_draw_square(
-    .clk,
-    .rst,
+    .vcount_out (vcount_bg),
+    .vsync_out  (vsync_bg),
+    .vblnk_out  (vblnk_bg),
+    .hcount_out (hcount_bg),
+    .hsync_out  (hsync_bg),
+    .hblnk_out  (hblnk_bg),
 
-    .vga_in (vga_bg),
-    .vga_out (vga_square)
+    .rgb_out    (rgb_bg)
 );
 
 endmodule

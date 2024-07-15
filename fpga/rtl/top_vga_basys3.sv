@@ -8,11 +8,6 @@
  * MTM UEC2
  * Piotr Kaczmarczyk
  *
- * Modified by:
- * 2024 AGH University of Science and Technology
- * MTM UEC2
- * Agnieszka Wroblewska, Magdalena Tatko
- *
  * Description:
  * Top level synthesizable module including the project top and all the FPGA-referred modules.
  */
@@ -26,7 +21,8 @@ module top_vga_basys3 (
     output wire Hsync,
     output wire [3:0] vgaRed,
     output wire [3:0] vgaGreen,
-    output wire [3:0] vgaBlue
+    output wire [3:0] vgaBlue,
+    output wire JA1
 );
 
 
@@ -34,10 +30,7 @@ module top_vga_basys3 (
  * Local variables and signals
  */
 
-
-wire clk_in, clk_fb, clk_ss, clk_out;
-wire locked;
-wire clk_out1;
+wire clk65MHz;
 wire pclk_mirror;
 
 (* KEEP = "TRUE" *)
@@ -51,21 +44,29 @@ logic [7:0] safe_start = 0;
  * Signals assignments
  */
 
- 
- clk_wiz_0 u_clk_wiz_0 (
-    .clk(clk),
-    .locked(locked),
-    .clk_out1(clk_out1)
-);
+assign JA1 = pclk_mirror;
+
+
 /**
  * FPGA submodules placement
  */
 
 
+// Mirror pclk on a pin for use by the testbench;
+// not functionally required for this design to work.
+
+clk_wiz_0 u_clk_wiz_0 (
+    .clk,
+    .clk100MHz(),
+    .clk65MHz,
+    .locked()
+);
+
+
 
 ODDR pclk_oddr (
     .Q(pclk_mirror),
-    .C(clk_out1),
+    .C(clk65MHz),
     .CE(1'b1),
     .D1(1'b1),
     .D2(1'b0),
@@ -79,7 +80,7 @@ ODDR pclk_oddr (
  */
 
 top_vga u_top_vga (
-    .clk(clk_out1),
+    .clk(clk65MHz),
     .rst(btnC),
     .r(vgaRed),
     .g(vgaGreen),

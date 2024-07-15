@@ -1,11 +1,6 @@
 # Copyright (C) 2023  AGH University of Science and Technology
 # MTM UEC2
 # Author: Piotr Kaczmarczyk
-# 
-# Modified by:
-# 2024 AGH University of Science and Technology
-# MTM UEC2
-# Agnieszka Wroblewska, Magdalena Tatko
 #
 # Description:
 # Project detiles required for generate_bitstream.tcl
@@ -37,18 +32,17 @@ set xdc_files {
 # Specify SystemVerilog design files location   -- EDIT
 set sv_files {
     ../rtl/vga_pkg.sv
-    ../rtl/vga_if.sv
     ../rtl/vga_timing.sv
     ../rtl/draw_bg.sv
-    ../rtl/draw_square.sv
     ../rtl/top_vga.sv
     rtl/top_vga_basys3.sv
 }
 
-# Specify Verilog design files location         -- EDIT
-# set verilog_files {
-#     path/to/file.v
-# }
+#Specify Verilog design files location         -- EDIT
+set verilog_files {
+    rtl/clk_wiz_0_clk_wiz.v
+    rtl/clk_wiz_0.v
+}
 
 # Specify VHDL design files location            -- EDIT
 # set vhdl_files {

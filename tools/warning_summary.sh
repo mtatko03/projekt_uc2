@@ -4,12 +4,6 @@
 # MTM UEC2
 # Author: Piotr Kaczmarczyk
 #
-#
-# Modified by:
-# 2024 AGH University of Science and Technology
-# MTM UEC2
-# Agnieszka Wroblewska, Magdalena Tatko
-#
 # Description:
 # This script extracts warnings and errors from the synthesis
 # and implementation logs to a single log file.

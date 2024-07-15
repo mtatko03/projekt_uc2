@@ -2,12 +2,6 @@
 # MTM UEC2
 # Author: Piotr Kaczmarczyk
 #
-#
-# Modified by:
-# 2024 AGH University of Science and Technology
-# MTM UEC2
-# Agnieszka Wroblewska, Magdalena Tatko
-#
 # Description:
 # List of files defining the modules used during the test.
 # Specify the file paths relative to THIS file.
@@ -16,6 +10,5 @@
 
 
 sv work ../../rtl/vga_pkg.sv \
-        ../../rtl/vga_timing.sv \
         ../../rtl/vga_timing.sv \
         vga_timing_tb.sv
