@@ -12,12 +12,7 @@
 module vga_timing (
     input  logic clk,
     input  logic rst,
-    output logic [10:0] vcount,
-    output logic vsync,
-    output logic vblnk,
-    output logic [10:0] hcount,
-    output logic hsync,
-    output logic hblnk
+    vga_if.out vga_out
 );
 
 import vga_pkg::*;
@@ -43,68 +38,39 @@ import vga_pkg::*;
 
 always_ff@(posedge clk) begin
     if(rst) begin
-        hcount <= 0;
-        vcount <= 0;
-        hblnk <= 0;
-        vblnk <= 0;
-        hsync <= 0;
-        vsync <= 0;
+        vga_out.hcount <= 0;
+        vga_out.vcount <= 0;
+        vga_out.hblnk <= 0;
+        vga_out.vblnk <= 0;
+        vga_out.hsync <= 0;
+        vga_out.vsync <= 0;
     end
     else begin
-        hcount <= hcount_nxt; 
-        vcount <= vcount_nxt;
-        hblnk <= hblnk_nxt;
-        vblnk <= vblnk_nxt;
-        hsync <= hsync_nxt;
-        vsync <= vsync_nxt;
+        vga_out.hcount <= hcount_nxt; 
+        vga_out.vcount <= vcount_nxt;
+        vga_out.hblnk <= hblnk_nxt;
+        vga_out.vblnk <= vblnk_nxt;
+        vga_out.hsync <= hsync_nxt;
+        vga_out.vsync <= vsync_nxt;
     end
 end
 
 always_comb begin
-    if(hcount == HOR_TOTAL_TIME -1) begin
-        if(vcount == VER_TOTAL_TIME -1) begin
-            vcount_nxt=0;
-        end
-        else begin
-            vcount_nxt= vcount + 1;
-        end
-        hcount_nxt=0;
+    if(vga_out.hcount == HOR_TOTAL_TIME -1) begin
+        hcount_nxt = '0;
+        if(vga_out.vcount == VER_TOTAL_TIME -1)
+            vcount_nxt='0;
+        else
+            vcount_nxt= vga_out.vcount + 1;
     end 
     else begin
-        hcount_nxt = hcount +1;
-        vcount_nxt = vcount;
+        hcount_nxt = vga_out.hcount +1;
+        vcount_nxt = vga_out.vcount;
     end
 
-    
-    if (hcount_nxt >= HOR_BLANK_START)begin
-        hblnk_nxt = 1'b1;
-    end
-    else begin
-        hblnk_nxt = 1'b0;
-    end
-
-    
-    if((hcount_nxt >= HOR_SYNC_START )&& (hcount_nxt <= HOR_SYNC_END))begin
-        hsync_nxt =1'b1;
-    end
-    else begin 
-        hsync_nxt = 1'b0;
-    end
-    
-    
-    if(vcount_nxt > VER_BLANK_START) begin
-        vblnk_nxt = 1'b1;
-    end
-    else begin
-        vblnk_nxt = 1'b0;
-    end
-    
-    
-    if((vcount_nxt > VER_SYNC_START) && (vcount_nxt < VER_SYNC_END)) begin
-        vsync_nxt = 1'b1;
-    end
-    else begin
-        vsync_nxt = 1'b0;
-    end
+    hblnk_nxt = (hcount_nxt >= HOR_BLANK_START && hcount_nxt <= HOR_BLANK_END - 1);
+    hsync_nxt = (hcount_nxt >= HOR_SYNC_START && hcount_nxt <= HOR_SYNC_END - 1);
+    vblnk_nxt = (vcount_nxt >= VER_BLANK_START && vcount_nxt <= VER_BLANK_END - 1);
+    vsync_nxt = (vcount_nxt >= VER_SYNC_START && vcount_nxt <= VER_SYNC_END - 1);
 end
 endmodule

@@ -28,10 +28,7 @@ localparam CLK_PERIOD = 15.385;     // 65 MHz
 logic clk;
 logic rst;
 
-wire [10:0] vcount, hcount;
-wire        vsync,  hsync;
-wire        vblnk,  hblnk;
-
+vga_if if_tb();
 
 /**
  * Clock generation
@@ -62,18 +59,17 @@ end
 vga_timing dut(
     .clk,
     .rst,
-    .vcount,
-    .vsync,
-    .vblnk,
-    .hcount,
-    .hsync,
-    .hblnk
+    .vga_out (if_tb)
 );
 
 /**
  * Tasks and functions
  */
-
+task afterreset();
+    begin 
+        assert (vga_if.hcount == 0 && vga_if.vcount == 0);
+    end
+endtask
  // Here you can declare tasks with immediate assertions (assert).
 
 
@@ -82,8 +78,6 @@ vga_timing dut(
  */
 
 // Here you can declare concurrent assertions (assert property).
-
-
 /**
  * Main test
  */
@@ -92,9 +86,9 @@ initial begin
     @(posedge rst);
     @(negedge rst);
 
-    wait (vsync == 1'b0);
-    @(negedge vsync)
-    @(negedge vsync)
+    wait (vga_if.vsync == 1'b0);
+    @(negedge vga_if.vsync)
+    @(negedge vga_if.vsync)
 
     $finish;
 end

@@ -30,24 +30,21 @@ module top_vga (
  */
 
 // VGA signals from timing
-wire [10:0] vcount_tim, hcount_tim;
-wire vsync_tim, hsync_tim;
-wire vblnk_tim, hblnk_tim;
+ vga_if vga_timing();
 
 // VGA signals from background
-wire [10:0] vcount_bg, hcount_bg;
-wire vsync_bg, hsync_bg;
-wire vblnk_bg, hblnk_bg;
-wire [11:0] rgb_bg;
+ vga_if vga_bg();
 
+// VGA signals from square
+ vga_if vga_square();
 
 /**
  * Signals assignments
  */
 
-assign vs = vsync_bg;
-assign hs = hsync_bg;
-assign {r,g,b} = rgb_bg;
+assign vs = vga_square.vsync;
+assign hs = vga_square.hsync;
+assign {r,g,b} = vga_square.rgb;
 
 
 /**
@@ -57,33 +54,23 @@ assign {r,g,b} = rgb_bg;
 vga_timing u_vga_timing (
     .clk,
     .rst,
-    .vcount (vcount_tim),
-    .vsync  (vsync_tim),
-    .vblnk  (vblnk_tim),
-    .hcount (hcount_tim),
-    .hsync  (hsync_tim),
-    .hblnk  (hblnk_tim)
+    .vga_out (vga_timing)
 );
 
 draw_bg u_draw_bg (
     .clk,
     .rst,
+    
+    .vga_inbg (vga_timing),
+    .vga_outbg (vga_bg)
+);
 
-    .vcount_in  (vcount_tim),
-    .vsync_in   (vsync_tim),
-    .vblnk_in   (vblnk_tim),
-    .hcount_in  (hcount_tim),
-    .hsync_in   (hsync_tim),
-    .hblnk_in   (hblnk_tim),
+draw_square u_draw_square (
+    .clk,
+    .rst,
 
-    .vcount_out (vcount_bg),
-    .vsync_out  (vsync_bg),
-    .vblnk_out  (vblnk_bg),
-    .hcount_out (hcount_bg),
-    .hsync_out  (hsync_bg),
-    .hblnk_out  (hblnk_bg),
-
-    .rgb_out    (rgb_bg)
+    .vga_in(vga_bg),
+    .vga_out(vga_square)
 );
 
 endmodule
