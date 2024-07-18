@@ -29,14 +29,15 @@ module top_vga_tb;
  *  Local parameters
  */
 
-localparam CLK_PERIOD = 15.385;     // 65 MHz
+localparam CLK_PERIOD_65 = 15.385;     // 65 MHz
+localparam CLK_PERIOD_975 = 10.256;         //97,5 MHz
 
 
 /**
  * Local variables and signals
  */
 
-logic clk, rst;
+logic clk65MHz, clk975MHz, rst;
 wire vs, hs;
 wire [3:0] r, g, b;
 
@@ -46,8 +47,13 @@ wire [3:0] r, g, b;
  */
 
 initial begin
-    clk = 1'b0;
-    forever #(CLK_PERIOD/2) clk = ~clk;
+    clk65MHz = 1'b0;
+    forever #(CLK_PERIOD_65/2) clk65MHz = ~clk65MHz;
+end
+
+initial begin
+    clk975MHz = 1'b0;
+    forever #(CLK_PERIOD_975/2) clk975MHz = ~clk975MHz;
 end
 
 
@@ -56,7 +62,10 @@ end
  */
 
 top_vga dut (
-    .clk(clk),
+    .clk65MHz(clk65MHz),
+    .clk975MHz(clk975MHz),
+    .ps2_clk(),
+    .ps2_data(),
     .rst(rst),
     .vs(vs),
     .hs(hs),

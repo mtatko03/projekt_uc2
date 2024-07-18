@@ -16,6 +16,8 @@
 
         input logic clk,
         input logic rst,
+        input logic [11:0] xpos,
+        input logic [11:0] ypos,
 
         vga_if.in vga_in,
         vga_if.out vga_out

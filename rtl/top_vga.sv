@@ -15,8 +15,11 @@
 `timescale 1 ns / 1 ps
 
 module top_vga (
-    input  logic clk,
+    input  logic clk65MHz,
+    input  logic clk975MHz,
     input  logic rst,
+    inout  logic ps2_clk,
+    inout  logic ps2_data,
     output logic vs,
     output logic hs,
     output logic [3:0] r,
@@ -38,13 +41,21 @@ module top_vga (
 // VGA signals from square
  vga_if vga_square();
 
+ vga_if mouse_out();
+
+ logic [11:0] xpos;
+ logic [11:0] ypos;
+
+ logic [11:0] xpos_buf;
+ logic [11:0] ypos_buf;
+
 /**
  * Signals assignments
  */
 
-assign vs = vga_square.vsync;
-assign hs = vga_square.hsync;
-assign {r,g,b} = vga_square.rgb;
+assign vs = mouse_out.vsync;
+assign hs = mouse_out.hsync;
+assign {r,g,b} = mouse_out.rgb;
 
 
 /**
@@ -52,13 +63,13 @@ assign {r,g,b} = vga_square.rgb;
  */
 
 vga_timing u_vga_timing (
-    .clk,
+    .clk(clk65MHz),
     .rst,
     .vga_out (vga_timing)
 );
 
 draw_bg u_draw_bg (
-    .clk,
+    .clk(clk65MHz),
     .rst,
     
     .vga_inbg (vga_timing),
@@ -66,11 +77,48 @@ draw_bg u_draw_bg (
 );
 
 draw_square u_draw_square (
-    .clk,
+    .clk(clk65MHz),
     .rst,
 
     .vga_in(vga_bg),
-    .vga_out(vga_square)
+    .vga_out(vga_square),
+
+    .xpos,
+    .ypos
+);
+
+MouseCtl u_MouseCtl(
+    .clk(clk975MHz),
+    .rst,
+    .ps2_data,
+    .ps2_clk,
+    .xpos(xpos_buf),
+    .ypos(ypos_buf),
+
+    .zpos(),
+    .left(),
+    .middle(),
+    .right(),
+    .new_event(),
+    .value('0),
+    .setx('0),
+    .sety('0),
+    .setmax_x('0),
+    .setmax_y('0)
+);
+
+always_ff @(posedge clk65MHz) begin
+    xpos <= xpos_buf;
+    ypos <= ypos_buf;
+end
+
+draw_mouse u_draw_mouse(
+    .clk(clk65MHz),
+    .rst,
+    .vga_in(vga_square),
+    .vga_out(mouse_out),
+    .xpos,
+    .ypos
 );
 
 endmodule

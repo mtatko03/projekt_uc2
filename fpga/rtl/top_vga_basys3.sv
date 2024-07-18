@@ -19,6 +19,8 @@ module top_vga_basys3 (
     input  wire btnC,
     output wire Vsync,
     output wire Hsync,
+    inout  PS2Clk,
+    inout  PS2Data,
     output wire [3:0] vgaRed,
     output wire [3:0] vgaGreen,
     output wire [3:0] vgaBlue,
@@ -30,6 +32,8 @@ module top_vga_basys3 (
  * Local variables and signals
  */
 
+wire locked;
+wire clk975MHz;
 wire clk65MHz;
 wire pclk_mirror;
 
@@ -56,10 +60,10 @@ assign JA1 = pclk_mirror;
 // not functionally required for this design to work.
 
 clk_wiz_0 u_clk_wiz_0 (
-    .clk,
-    .clk100MHz(),
-    .clk65MHz,
-    .locked()
+    .clk(clk),
+    .clk975MHz(clk975MHz),
+    .clk65MHz(clk65MHz),
+    .locked(locked)
 );
 
 
@@ -80,7 +84,10 @@ ODDR pclk_oddr (
  */
 
 top_vga u_top_vga (
-    .clk(clk65MHz),
+    .clk65MHz,
+    .clk975MHz,
+    .ps2_data(PS2Data),
+    .ps2_clk(PS2Clk),
     .rst(btnC),
     .r(vgaRed),
     .g(vgaGreen),

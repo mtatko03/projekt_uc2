@@ -1,4 +1,5 @@
 
+
 // file: clk_wiz_0.v
 // 
 // (c) Copyright 2008 - 2013 Xilinx, Inc. All rights reserved.
@@ -56,7 +57,7 @@
 //  Output     Output      Phase    Duty Cycle   Pk-to-Pk     Phase
 //   Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)
 //----------------------------------------------------------------------------
-// clk100MHz__100.00000______0.000______50.0______130.067_____99.281
+// clk975MHz__97.50000______0.000______50.0______130.744_____99.281
 // clk65MHz__65.00000______0.000______50.0______142.278_____99.281
 //
 //----------------------------------------------------------------------------
@@ -71,7 +72,7 @@
 module clk_wiz_0 
  (
   // Clock out ports
-  output        clk100MHz,
+  output        clk975MHz,
   output        clk65MHz,
   // Status and control signals
   output        locked,
@@ -82,7 +83,7 @@ module clk_wiz_0
   clk_wiz_0_clk_wiz inst
   (
   // Clock out ports  
-  .clk100MHz(clk100MHz),
+  .clk975MHz(clk975MHz),
   .clk65MHz(clk65MHz),
   // Status and control signals               
   .locked(locked),
