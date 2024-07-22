@@ -1,6 +1,6 @@
 Warnings, critical warnings and errors from synthesis and implementation
 
-Created: 2024-07-18 18:31:44
+Created: 2024-07-22 21:20:39
 
 ----SYNTHESIS----
 WARNING: [Synth 8-3848] Net vga_out\.rgb in module/entity vga_timing does not have driver. [rtl/vga_timing.sv:15]
@@ -10,30 +10,22 @@ WARNING: [Synth 8-6014] Unused sequential element set_y.inc_reg was removed.  [r
 WARNING: [Synth 8-6014] Unused sequential element set_y.y_inter_reg was removed.  [rtl/MouseCtl.vhd:520]
 WARNING: [Synth 8-614] signal 'blank' is read in the process but is not in the sensitivity list [rtl/MouseDisplay.vhd:214]
 WARNING: [Synth 8-614] signal 'rgb_in' is read in the process but is not in the sensitivity list [rtl/MouseDisplay.vhd:214]
-WARNING: [Synth 8-7129] Port xpos[11] in module draw_square is either unconnected or has no load
-WARNING: [Synth 8-7129] Port xpos[10] in module draw_square is either unconnected or has no load
-WARNING: [Synth 8-7129] Port xpos[9] in module draw_square is either unconnected or has no load
-WARNING: [Synth 8-7129] Port xpos[8] in module draw_square is either unconnected or has no load
-WARNING: [Synth 8-7129] Port xpos[7] in module draw_square is either unconnected or has no load
-WARNING: [Synth 8-7129] Port xpos[6] in module draw_square is either unconnected or has no load
-WARNING: [Synth 8-7129] Port xpos[5] in module draw_square is either unconnected or has no load
-WARNING: [Synth 8-7129] Port xpos[4] in module draw_square is either unconnected or has no load
-WARNING: [Synth 8-7129] Port xpos[3] in module draw_square is either unconnected or has no load
-WARNING: [Synth 8-7129] Port xpos[2] in module draw_square is either unconnected or has no load
-WARNING: [Synth 8-7129] Port xpos[1] in module draw_square is either unconnected or has no load
-WARNING: [Synth 8-7129] Port xpos[0] in module draw_square is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ypos[11] in module draw_square is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ypos[10] in module draw_square is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ypos[9] in module draw_square is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ypos[8] in module draw_square is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ypos[7] in module draw_square is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ypos[6] in module draw_square is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ypos[5] in module draw_square is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ypos[4] in module draw_square is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ypos[3] in module draw_square is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ypos[2] in module draw_square is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ypos[1] in module draw_square is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ypos[0] in module draw_square is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.vsync in module draw_square_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.vblnk in module draw_square_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.hsync in module draw_square_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.hblnk in module draw_square_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[11] in module draw_square_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[10] in module draw_square_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[9] in module draw_square_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[8] in module draw_square_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[7] in module draw_square_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[6] in module draw_square_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[5] in module draw_square_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[4] in module draw_square_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[3] in module draw_square_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[2] in module draw_square_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[1] in module draw_square_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[0] in module draw_square_ctl is either unconnected or has no load
 WARNING: [Synth 8-7129] Port vga_inbg\.rgb[11] in module draw_bg is either unconnected or has no load
 WARNING: [Synth 8-7129] Port vga_inbg\.rgb[10] in module draw_bg is either unconnected or has no load
 WARNING: [Synth 8-7129] Port vga_inbg\.rgb[9] in module draw_bg is either unconnected or has no load

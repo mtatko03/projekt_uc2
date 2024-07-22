@@ -8,21 +8,22 @@
  */
 
  module draw_square
-    #(parameter POSITION_Y = 100,
-    parameter POSITION_X = 150,
+    #(//parameter POSITION_Y = 100,
+    //parameter POSITION_X = 150,
     parameter HEIGHT = 8,
     parameter WIDTH = 8,
     parameter COLOR = 12'hf_0_f)(
 
         input logic clk,
         input logic rst,
-        input logic [11:0] xpos,
-        input logic [11:0] ypos,
+        input logic [11:0] xpos_square,
+        input logic [11:0] ypos_square,
 
         vga_if.in vga_in,
         vga_if.out vga_out
 
 );
+
 
 logic [11:0] rgb_nxt;
 
@@ -35,6 +36,8 @@ always_ff @(posedge clk) begin
         vga_out.hsync   <= '0;
         vga_out.hblnk   <= '0;
         vga_out.rgb  <= '0;
+
+
     end else begin
         vga_out.vcount  <= vga_in.vcount;
         vga_out.vsync   <= vga_in.vsync;
@@ -47,7 +50,7 @@ always_ff @(posedge clk) begin
 end
 
 always_comb begin
-    if (vga_in.hcount >= POSITION_X && vga_in.vcount >= POSITION_Y && ( vga_in.vcount <= POSITION_Y + HEIGHT)&& (vga_in.hcount <= POSITION_X + WIDTH))
+    if (vga_in.hcount >= xpos_square && vga_in.vcount >= ypos_square && ( vga_in.vcount <= ypos_square + HEIGHT)&& (vga_in.hcount <= xpos_square + WIDTH))
         rgb_nxt = COLOR;
         else
         rgb_nxt = vga_in.rgb;
