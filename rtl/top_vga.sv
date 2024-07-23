@@ -48,6 +48,7 @@
  
   logic [11:0] xpos_square;
   logic [11:0] ypos_square;
+  logic [11:0] width_square;
  
   logic [11:0] xpos_buf;
   logic [11:0] ypos_buf;
@@ -87,7 +88,8 @@
      .vga_out(vga_square),
  
      .xpos_square(xpos_square),
-     .ypos_square(ypos_square)
+     .ypos_square(ypos_square),
+     .width_square(width_square)
  );
  
  draw_square_ctl u_draw_square_ctl (
@@ -96,7 +98,8 @@
      .mouse_right(mouse_right),
      .vga_in(vga_timing),
      .xpos_square(xpos_square),
-     .ypos_square(ypos_square)
+     .ypos_square(ypos_square),
+     .width_square(width_square)
  );
  
  MouseCtl u_MouseCtl(
