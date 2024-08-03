@@ -8,16 +8,16 @@
  */
 
  module draw_square
-    #(//parameter POSITION_Y = 100,
-    //parameter POSITION_X = 150,
-    parameter SIZE = 8,
+    #(parameter POSITION_Y = 30,
+    parameter POSITION_X = 300,
+    parameter HEIGHT = 8,
+    parameter WIDTH = 8,
     parameter COLOR = 12'hf_0_f)(
 
         input logic clk,
         input logic rst,
         input logic [11:0] xpos_square,
         input logic [11:0] ypos_square,
-        input logic [11:0] width_square,
 
         vga_if.in vga_in,
         vga_if.out vga_out
@@ -50,7 +50,7 @@ always_ff @(posedge clk) begin
 end
 
 always_comb begin
-    if (vga_in.hcount >= xpos_square && vga_in.vcount >= ypos_square && ( vga_in.vcount <= ypos_square + SIZE)&& (vga_in.hcount <= xpos_square + width_square))
+    if (vga_in.hcount >= POSITION_X && vga_in.vcount >= POSITION_Y && ( vga_in.vcount <= POSITION_Y + HEIGHT)&& (vga_in.hcount <= POSITION_X + WIDTH))
         rgb_nxt = COLOR;
         else
         rgb_nxt = vga_in.rgb;

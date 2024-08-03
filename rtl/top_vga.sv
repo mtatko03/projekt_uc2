@@ -37,21 +37,20 @@
  
  // VGA signals from background
   vga_if vga_bg();
- 
- // VGA signals from square
-  vga_if vga_square();
- 
+
+  /*vga_if vga_start();*/
+  vga_if vga_square(); 
   vga_if mouse_out();
+  vga_if vga_map();
  
   logic [11:0] xpos;
   logic [11:0] ypos;
  
-  logic [11:0] xpos_square;
-  logic [11:0] ypos_square;
-  logic [11:0] width_square;
- 
   logic [11:0] xpos_buf;
   logic [11:0] ypos_buf;
+
+  import game_pkg::*;
+  logic clk_div;
  
  /**
   * Signals assignments
@@ -72,34 +71,36 @@
      .vga_out (vga_timing)
  );
  
- draw_bg u_draw_bg (
+ /*draw_bg u_draw_bg (
      .clk(clk65MHz),
      .rst,
      
      .vga_inbg (vga_timing),
      .vga_outbg (vga_bg)
- );
+ );*/
+
  
- draw_square u_draw_square (
+ tile map [MAP_WIDTH][MAP_HEIGHT];
+
+ draw_map u_draw_ (
      .clk(clk65MHz),
      .rst,
- 
-     .vga_in(vga_bg),
-     .vga_out(vga_square),
- 
-     .xpos_square(xpos_square),
-     .ypos_square(ypos_square),
-     .width_square(width_square)
- );
- 
- draw_square_ctl u_draw_square_ctl (
-     .clk(clk65MHz),
-     .rst,
-     .mouse_right(mouse_right),
+     .map,
      .vga_in(vga_timing),
-     .xpos_square(xpos_square),
-     .ypos_square(ypos_square),
-     .width_square(width_square)
+     .vga_out(vga_map)
+ );
+
+ control u_control (
+    .clk(clk_div),
+    .rst,
+    .direction(RIGHT),
+    .map
+ );
+
+ clk_div u_clk_div(
+    .clk_in(clk65MHz),
+    .rst,
+    .clk_div(clk_div)
  );
  
  MouseCtl u_MouseCtl(
@@ -126,11 +127,12 @@
      xpos <= xpos_buf;
      ypos <= ypos_buf;
  end
- 
+
+
  draw_mouse u_draw_mouse(
      .clk(clk65MHz),
      .rst,
-     .vga_in(vga_square),
+     .vga_in(vga_map),
      .vga_out(mouse_out),
      .xpos,
      .ypos

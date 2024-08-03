@@ -1,19 +1,45 @@
 Warnings, critical warnings and errors from synthesis and implementation
 
-Created: 2024-07-23 11:22:55
+Created: 2024-07-31 22:43:02
 
 ----SYNTHESIS----
-WARNING: [Synth 8-3848] Net vga_out\.rgb in module/entity vga_timing does not have driver. [rtl/vga_timing.sv:15]
-WARNING: [Synth 8-6014] Unused sequential element set_x.inc_reg was removed.  [rtl/MouseCtl.vhd:450]
-WARNING: [Synth 8-6014] Unused sequential element set_x.x_inter_reg was removed.  [rtl/MouseCtl.vhd:456]
-WARNING: [Synth 8-6014] Unused sequential element set_y.inc_reg was removed.  [rtl/MouseCtl.vhd:514]
-WARNING: [Synth 8-6014] Unused sequential element set_y.y_inter_reg was removed.  [rtl/MouseCtl.vhd:520]
-WARNING: [Synth 8-614] signal 'blank' is read in the process but is not in the sensitivity list [rtl/MouseDisplay.vhd:214]
-WARNING: [Synth 8-614] signal 'rgb_in' is read in the process but is not in the sensitivity list [rtl/MouseDisplay.vhd:214]
-WARNING: [Synth 8-7129] Port vga_in\.vsync in module draw_square_ctl is either unconnected or has no load
-WARNING: [Synth 8-7129] Port vga_in\.vblnk in module draw_square_ctl is either unconnected or has no load
-WARNING: [Synth 8-7129] Port vga_in\.hsync in module draw_square_ctl is either unconnected or has no load
-WARNING: [Synth 8-7129] Port vga_in\.hblnk in module draw_square_ctl is either unconnected or has no load
+WARNING: [Synth 8-614] signal 'blank' is read in the process but is not in the sensitivity list [rtl/mouse/MouseDisplay.vhd:214]
+WARNING: [Synth 8-614] signal 'rgb_in' is read in the process but is not in the sensitivity list [rtl/mouse/MouseDisplay.vhd:214]
+WARNING: [Synth 8-3848] Net vga_out\.rgb in module/entity vga_timing does not have driver. [rtl/vga/vga_timing.sv:15]
+WARNING: [Synth 8-11357] Potential Runtime issue for 3D-RAM or RAM from Record/Structs for RAM  map_reg with 393216 registers
+WARNING: [Synth 8-11357] Potential Runtime issue for 3D-RAM or RAM from Record/Structs for RAM  map_nxt_reg with 393216 registers
+WARNING: [Synth 8-7129] Port direction[31] in module control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port direction[30] in module control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port direction[29] in module control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port direction[28] in module control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port direction[27] in module control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port direction[26] in module control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port direction[25] in module control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port direction[24] in module control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port direction[23] in module control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port direction[22] in module control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port direction[21] in module control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port direction[20] in module control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port direction[19] in module control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port direction[18] in module control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port direction[17] in module control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port direction[16] in module control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port direction[15] in module control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port direction[14] in module control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port direction[13] in module control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port direction[12] in module control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port direction[11] in module control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port direction[10] in module control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port direction[9] in module control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port direction[8] in module control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port direction[7] in module control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port direction[6] in module control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port direction[5] in module control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port direction[4] in module control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port direction[3] in module control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port direction[2] in module control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port direction[1] in module control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port direction[0] in module control is either unconnected or has no load
 WARNING: [Synth 8-7129] Port vga_in\.rgb[11] in module draw_square_ctl is either unconnected or has no load
 WARNING: [Synth 8-7129] Port vga_in\.rgb[10] in module draw_square_ctl is either unconnected or has no load
 WARNING: [Synth 8-7129] Port vga_in\.rgb[9] in module draw_square_ctl is either unconnected or has no load
@@ -26,6 +52,18 @@ WARNING: [Synth 8-7129] Port vga_in\.rgb[3] in module draw_square_ctl is either 
 WARNING: [Synth 8-7129] Port vga_in\.rgb[2] in module draw_square_ctl is either unconnected or has no load
 WARNING: [Synth 8-7129] Port vga_in\.rgb[1] in module draw_square_ctl is either unconnected or has no load
 WARNING: [Synth 8-7129] Port vga_in\.rgb[0] in module draw_square_ctl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[11] in module draw_start is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[10] in module draw_start is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[9] in module draw_start is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[8] in module draw_start is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[7] in module draw_start is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[6] in module draw_start is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[5] in module draw_start is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[4] in module draw_start is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[3] in module draw_start is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[2] in module draw_start is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[1] in module draw_start is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_in\.rgb[0] in module draw_start is either unconnected or has no load
 WARNING: [Synth 8-7129] Port vga_inbg\.rgb[11] in module draw_bg is either unconnected or has no load
 WARNING: [Synth 8-7129] Port vga_inbg\.rgb[10] in module draw_bg is either unconnected or has no load
 WARNING: [Synth 8-7129] Port vga_inbg\.rgb[9] in module draw_bg is either unconnected or has no load
