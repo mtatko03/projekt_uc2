@@ -35,13 +35,10 @@
  // VGA signals from timing
   vga_if vga_timing();
  
- // VGA signals from background
-  vga_if vga_bg();
-
-  /*vga_if vga_start();*/
   vga_if vga_square(); 
   vga_if mouse_out();
   vga_if vga_map();
+  vga_if vga_start();
  
   logic [11:0] xpos;
   logic [11:0] ypos;
@@ -49,8 +46,8 @@
   logic [11:0] xpos_buf;
   logic [11:0] ypos_buf;
 
-  import game_pkg::*;
   logic clk_div;
+  import game_pkg::*;
  
  /**
   * Signals assignments
@@ -71,14 +68,13 @@
      .vga_out (vga_timing)
  );
  
- /*draw_bg u_draw_bg (
-     .clk(clk65MHz),
-     .rst,
-     
-     .vga_inbg (vga_timing),
-     .vga_outbg (vga_bg)
- );*/
 
+ draw_start u_draw_start (
+        .clk(clk65MHz),
+        .rst,
+        .vga_in (vga_timing),
+        .vga_out (vga_start)
+ );
  
  tile map [MAP_WIDTH][MAP_HEIGHT];
 
