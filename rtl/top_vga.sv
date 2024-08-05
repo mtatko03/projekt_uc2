@@ -39,6 +39,8 @@
   vga_if mouse_out();
   vga_if vga_map();
   vga_if vga_start();
+  vga_if vga_player1();
+  vga_if vga_player2();
  
   logic [11:0] xpos;
   logic [11:0] ypos;
@@ -75,6 +77,7 @@
         .vga_in (vga_timing),
         .vga_out (vga_start)
  );
+ 
  
  tile map [MAP_WIDTH][MAP_HEIGHT];
 

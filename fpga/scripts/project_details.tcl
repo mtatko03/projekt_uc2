@@ -38,6 +38,8 @@ set sv_files {
     ../rtl/game_pkg.sv
     ../rtl/draw/draw_square.sv
     ../rtl/draw/draw_start.sv
+    ../rtl/draw/draw_player1_win.sv 
+    ../rtl/draw/draw_player2_win.sv
     ../rtl/draw/draw_map.sv
     ../rtl/draw/draw_mouse.sv
     ../rtl/control.sv

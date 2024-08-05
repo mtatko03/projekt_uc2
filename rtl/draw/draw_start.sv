@@ -7,8 +7,10 @@
  import game_pkg::*;
  import vga_pkg::*;
 
- module draw_start(
+ module draw_start
+    #(  parameter PLAYER1_COLOR = 12'hf_0_f
 
+        )(
             input logic clk,
             input logic rst,
             vga_if.in vga_in,
@@ -17,6 +19,8 @@
  );
 
  logic [11:0] rgb_nxt;
+ 
+
 
  always_ff @(posedge clk) begin : bg_ff_blk
     if (rst) begin
