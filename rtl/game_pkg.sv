@@ -10,8 +10,8 @@ typedef enum {
     PLAYER2_WIN
 }game_mode;
 
-typedef enum {
-    WAIT,
+typedef enum{
+    WAIT, 
     RIGHT,
     LEFT,
     UP,
@@ -30,6 +30,7 @@ localparam MAP_WIDTH = 64;
 localparam MAP_HEIGHT = 48;
 
 tile map [MAP_WIDTH][MAP_HEIGHT];
+directions current_direction, nxt_direction;
 
 localparam SIZE=HOR_PIXELS/MAP_WIDTH;
 

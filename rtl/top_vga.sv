@@ -77,9 +77,25 @@
         .vga_in (vga_timing),
         .vga_out (vga_start)
  );
+
+ draw_player1_win u_draw_player1_win (
+    .clk(clk65MHz),
+    .rst,
+    .vga_in (vga_timing),
+    .vga_out (vga_player1)
+);
+
+
+draw_player2_win u_draw_player2_win (
+    .clk(clk65MHz),
+    .rst,
+    .vga_in (vga_timing),
+    .vga_out (vga_player2)
+);
  
  
  tile map [MAP_WIDTH][MAP_HEIGHT];
+ directions direction;
 
  draw_map u_draw_ (
      .clk(clk65MHz),
@@ -89,11 +105,19 @@
      .vga_out(vga_map)
  );
 
+ direction_control u_direction_control(
+    .clk(clk_div),
+    .rst,
+    .direction(direction),
+    .mouse_right(mouse_right),
+    .mouse_left(mouse_left)
+ );
+
  control u_control (
     .clk(clk_div),
     .rst,
-    .direction(RIGHT),
-    .map
+    .direction(direction),
+    .map(map)
  );
 
  clk_div u_clk_div(
@@ -111,7 +135,7 @@
      .ypos(ypos_buf),
  
      .zpos(),
-     .left(),
+     .left(mouse_left),
      .middle(),
      .right(mouse_right),
      .new_event(),

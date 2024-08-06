@@ -20,8 +20,9 @@ sv work ../../rtl/vga/vga_pkg.sv \
         ../../rtl/draw/draw_player2_win.sv \
         ../../rtl/draw/draw_mouse.sv \
         ../../rtl/draw/draw_map.sv \
-        ../../rtl/control.sv \
         ../../rtl/top_vga.sv \
+        ../../rtl/control.sv \
+        ../../rtl/direction_control.sv \
         ../../fpga/rtl/top_vga_basys3.sv \
         ../common/tiff_writer.sv \
         top_fpga_tb.sv

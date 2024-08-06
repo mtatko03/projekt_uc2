@@ -42,8 +42,9 @@ set sv_files {
     ../rtl/draw/draw_player2_win.sv
     ../rtl/draw/draw_map.sv
     ../rtl/draw/draw_mouse.sv
-    ../rtl/control.sv
     ../rtl/top_vga.sv
+    ../rtl/control.sv
+    ../rtl/direction_control.sv
     rtl/top_vga_basys3.sv
 }
 
