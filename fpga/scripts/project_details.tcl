@@ -36,7 +36,6 @@ set sv_files {
     ../rtl/vga/vga_timing.sv
     ../rtl/clk_div.sv
     ../rtl/game_pkg.sv
-    ../rtl/draw/draw_square.sv
     ../rtl/draw/draw_start.sv
     ../rtl/draw/draw_player1_win.sv 
     ../rtl/draw/draw_player2_win.sv

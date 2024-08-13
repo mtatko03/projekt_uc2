@@ -35,7 +35,6 @@
  // VGA signals from timing
   vga_if vga_timing();
  
-  vga_if vga_square(); 
   vga_if mouse_out();
   vga_if vga_map();
   vga_if vga_start();
@@ -50,6 +49,9 @@
 
   logic clk_div;
   import game_pkg::*;
+
+  tile map [MAP_WIDTH][MAP_HEIGHT];
+  directions direction;
  
  /**
   * Signals assignments
@@ -65,17 +67,17 @@
   */
  
  vga_timing u_vga_timing (
-     .clk(clk65MHz),
-     .rst,
-     .vga_out (vga_timing)
+    .clk(clk65MHz),
+    .rst,
+    .vga_out (vga_timing)
  );
  
 
  draw_start u_draw_start (
-        .clk(clk65MHz),
-        .rst,
-        .vga_in (vga_timing),
-        .vga_out (vga_start)
+    .clk(clk65MHz),
+    .rst,
+    .vga_in (vga_timing),
+    .vga_out (vga_start)
  );
 
  draw_player1_win u_draw_player1_win (
@@ -92,10 +94,6 @@ draw_player2_win u_draw_player2_win (
     .vga_in (vga_timing),
     .vga_out (vga_player2)
 );
- 
- 
- tile map [MAP_WIDTH][MAP_HEIGHT];
- directions direction;
 
  draw_map u_draw_ (
      .clk(clk65MHz),

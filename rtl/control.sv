@@ -11,12 +11,13 @@ import vga_pkg::*; (
     input logic        clk,
     input logic        rst,
     input directions   direction, 
-    output tile map [MAP_WIDTH][MAP_HEIGHT]
+    output tile map    [MAP_WIDTH][MAP_HEIGHT]
 );
 
 logic [11:0] rgb_nxt;
 logic [7:0] current_x, nxt_x;
 logic [7:0] current_y, nxt_y;
+
 tile map_nxt [MAP_WIDTH][MAP_HEIGHT];
 
 always_ff @(posedge clk ) begin 
