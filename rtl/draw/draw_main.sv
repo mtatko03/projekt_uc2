@@ -10,8 +10,8 @@
  module draw_main(
      input logic        clk,
      input logic        rst,
-     input tile map [MAP_WIDTH][MAP_HEIGHT],
-     input game_mode game_mode,
+     input tile         map [MAP_WIDTH][MAP_HEIGHT],
+     input game_mode    mode,
  
      vga_if.in vga_in,
      vga_if.out vga_out
@@ -47,7 +47,7 @@
      
  
  always_comb begin
-     case(game_mode)
+     case(mode)
  
          START:begin
              vga_nxt.vcount   = start.vcount;

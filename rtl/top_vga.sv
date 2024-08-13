@@ -48,6 +48,7 @@
 
   tile map [MAP_WIDTH][MAP_HEIGHT];
   directions direction;
+  game_mode mode;
  
  /**
   * Signals assignments
@@ -128,9 +129,16 @@
     .clk(clk65MHz),
     .rst,
     .map,
-    .game_mode(GAME),
+    .mode(mode),
     .vga_in(vga_timing),
     .vga_out(vga_screen)
+ );
+
+ gamemode_control u_gamemode_control(
+   .clk(clk65MHz),
+   .rst,
+   .mode(mode),
+   .mouse_right(mouse_right)
  );
  
  endmodule
