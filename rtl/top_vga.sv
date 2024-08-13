@@ -34,12 +34,8 @@
  
  // VGA signals from timing
   vga_if vga_timing();
- 
   vga_if mouse_out();
-  vga_if vga_map();
-  vga_if vga_start();
-  vga_if vga_player1();
-  vga_if vga_player2();
+  vga_if vga_screen();
  
   logic [11:0] xpos;
   logic [11:0] ypos;
@@ -70,37 +66,6 @@
     .clk(clk65MHz),
     .rst,
     .vga_out (vga_timing)
- );
- 
-
- draw_start u_draw_start (
-    .clk(clk65MHz),
-    .rst,
-    .vga_in (vga_timing),
-    .vga_out (vga_start)
- );
-
- draw_player1_win u_draw_player1_win (
-    .clk(clk65MHz),
-    .rst,
-    .vga_in (vga_timing),
-    .vga_out (vga_player1)
-);
-
-
-draw_player2_win u_draw_player2_win (
-    .clk(clk65MHz),
-    .rst,
-    .vga_in (vga_timing),
-    .vga_out (vga_player2)
-);
-
- draw_map u_draw_ (
-     .clk(clk65MHz),
-     .rst,
-     .map,
-     .vga_in(vga_timing),
-     .vga_out(vga_map)
  );
 
  direction_control u_direction_control(
@@ -153,10 +118,19 @@ draw_player2_win u_draw_player2_win (
  draw_mouse u_draw_mouse(
      .clk(clk65MHz),
      .rst,
-     .vga_in(vga_map),
+     .vga_in(vga_screen),
      .vga_out(mouse_out),
      .xpos,
      .ypos
+ );
+
+ draw_main u_draw_main(
+    .clk(clk65MHz),
+    .rst,
+    .map,
+    .game_mode(GAME),
+    .vga_in(vga_timing),
+    .vga_out(vga_screen)
  );
  
  endmodule
