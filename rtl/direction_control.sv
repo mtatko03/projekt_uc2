@@ -51,10 +51,10 @@ always_comb begin
 
         DOWN:begin
             if(mouse_right)begin
-                nxt_direction = RIGHT;
+                nxt_direction = LEFT;
             end 
             else if (mouse_left)begin
-                nxt_direction = LEFT;
+                nxt_direction = RIGHT;
             end 
             else begin 
                 nxt_direction = DOWN;

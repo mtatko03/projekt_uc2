@@ -7,7 +7,8 @@ typedef enum {
     START,
     GAME,
     PLAYER1_WIN,
-    PLAYER2_WIN
+    PLAYER2_WIN,
+    GAME_OVER
 }game_mode;
 
 typedef enum{
