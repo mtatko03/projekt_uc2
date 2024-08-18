@@ -81,7 +81,8 @@
     .clk(clk_div),
     .rst,
     .direction(direction),
-    .map(map)
+    .map(map),
+    .player1_collision(player1_collision)
  );
 
  clk_div u_clk_div(
@@ -138,7 +139,8 @@
    .clk(clk65MHz),
    .rst,
    .mode(mode),
-   .mouse_right(mouse_right)
+   .mouse_left(mouse_left),
+   .player1_collision(player1_collision)
  );
  
  endmodule

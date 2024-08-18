@@ -12,10 +12,10 @@ module control (
     input logic        clk,
     input logic        rst,
     input directions   direction,
-    output tile        map [MAP_WIDTH][MAP_HEIGHT]
+    output tile        map [MAP_WIDTH][MAP_HEIGHT],
+    output logic       player1_collision
 );
  
-logic [11:0] rgb_nxt;
 logic [7:0] current_x, nxt_x;
 logic [7:0] current_y, nxt_y;
 logic [7:0] prev_x, prev_y;
@@ -31,6 +31,7 @@ always_ff @(posedge clk) begin
         // Resetowanie pozycji gracza
         current_x <= start_x;
         current_y <= start_y;
+        player1_collision <= 0;
         
         // Inicjalizacja mapy
         for (bit [7:0] j = 0; j < MAP_HEIGHT; j++) begin
@@ -48,9 +49,11 @@ always_ff @(posedge clk) begin
             current_x <= nxt_x;
             current_y <= nxt_y;
             map <= map_nxt;
+            player1_collision <= 0;
         end else begin
             // Gracz trafił na zajętą pozycję, gra kończy się
             // Przejdź do stanu `PLAYER2_WIN` tutaj lub w `gamemode_control.sv`
+            player1_collision <= 1;
         end
     end
 end

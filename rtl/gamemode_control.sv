@@ -8,8 +8,9 @@ import vga_pkg::*;
 module gamemode_control (
     input logic        clk,
     input logic        rst,
-    input logic        mouse_right,
-    output game_mode   mode
+    input logic        mouse_left,
+    output game_mode   mode,
+    input logic        player1_collision
 );
 
 game_mode current_game_mode, game_mode_nxt;
@@ -27,12 +28,15 @@ always_comb begin
     
     case (current_game_mode)
         START: begin
-            if (mouse_right) begin
+            if (mouse_left) begin
                 game_mode_nxt = GAME;
             end
         end
         
         GAME: begin
+            if(player1_collision)begin
+                game_mode_nxt = PLAYER2_WIN;
+            end
             // Możliwość wprowadzenia logiki końca gry
             // W praktyce, powinno być to obsługiwane w module `control.sv`
         end
@@ -45,11 +49,6 @@ always_comb begin
         PLAYER2_WIN: begin
             // Logika końca gry dla PLAYER2_WIN
             game_mode_nxt = PLAYER2_WIN;
-        end
-
-        GAME_OVER: begin
-            // Możliwość dodania logiki końca gry
-            game_mode_nxt = GAME_OVER;
         end
         
         default: begin

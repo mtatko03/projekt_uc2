@@ -120,14 +120,14 @@
  );
  
  draw_player1_win draw_player1_win(
-     .clk(clk65MHz),
+     .clk(clk),
      .rst(rst),
      .vga_in,
      .vga_out(player1)
  );
  
  draw_player2_win draw_player2_win(
-     .clk(clk65MHz),
+     .clk(clk),
      .rst(rst),
      .vga_in,
      .vga_out(player2)
