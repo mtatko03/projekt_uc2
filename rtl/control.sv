@@ -38,6 +38,8 @@ always_ff @(posedge clk) begin
             for (bit [7:0] i = 0; i < MAP_WIDTH; i++) begin
                 if (i == start_x && j == start_y) begin
                     map[i][j] <= PLAYER1;
+                end else if (i == 0 || i == MAP_WIDTH-1 || j == 0 || j == MAP_HEIGHT -1 )begin
+                    map[i][j] <= FRAME;
                 end else begin
                     map[i][j] <= EMPTY;
                 end
