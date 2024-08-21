@@ -10,7 +10,9 @@ module gamemode_control (
     input logic        rst,
     input logic        mouse_left,
     output game_mode   mode,
-    input logic        player1_collision
+    input logic        player1_collision,
+    input logic [11:0] xpos,
+    input logic [11:0] ypos
 );
 
 game_mode current_game_mode, game_mode_nxt;
@@ -28,8 +30,13 @@ always_comb begin
     
     case (current_game_mode)
         START: begin
-            if (mouse_left) begin
+            current_x = start_x;
+            current_y = start_y;
+            current_direction = WAIT;
+            if (mouse_left && (xpos >= PLAY_X_MIN && xpos <= PLAY_X_MAX) && (ypos >= PLAY_Y_MIN && ypos <= PLAY_Y_MAX)) begin
                 game_mode_nxt = GAME;
+                current_x = start_x;
+                current_y = start_y;
             end
         end
         
@@ -42,13 +49,22 @@ always_comb begin
         end
         
         PLAYER1_WIN: begin
-            // Logika końca gry dla PLAYER1_WIN
-            game_mode_nxt = PLAYER1_WIN;
+            current_x = start_x;
+            current_y = start_y;
+            current_direction = WAIT; 
+            if(mouse_left && (xpos >= RECT_X_MIN && xpos <= RECT_X_MAX) && (ypos >= RECT_Y_MIN && ypos <= RECT_Y_MAX)) begin
+                game_mode_nxt = START;
+            end
         end
         
         PLAYER2_WIN: begin
-            // Logika końca gry dla PLAYER2_WIN
-            game_mode_nxt = PLAYER2_WIN;
+            current_x = start_x;
+            current_y = start_y;
+            current_direction = WAIT;
+            if(mouse_left && (xpos >= RECT_X_MIN && xpos <= RECT_X_MAX) && (ypos >= RECT_Y_MIN && ypos <= RECT_Y_MAX)) begin
+                game_mode_nxt = START;
+
+            end 
         end
         
         default: begin

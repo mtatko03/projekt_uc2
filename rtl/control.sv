@@ -12,22 +12,19 @@ module control (
     input logic        clk,
     input logic        rst,
     input directions   direction,
+    input game_mode    mode,
     output tile        map [MAP_WIDTH][MAP_HEIGHT],
     output logic       player1_collision
 );
  
-logic [7:0] current_x, nxt_x;
-logic [7:0] current_y, nxt_y;
-logic [7:0] prev_x, prev_y;
+
 
 tile map_nxt [MAP_WIDTH][MAP_HEIGHT];
 
-// Pozycja startowa
-logic [7:0] start_x = 10;
-logic [7:0] start_y = 18;
+
 
 always_ff @(posedge clk) begin
-    if (rst) begin
+    if (rst || mode == START) begin
         // Resetowanie pozycji gracza
         current_x <= start_x;
         current_y <= start_y;

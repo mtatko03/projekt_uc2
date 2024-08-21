@@ -26,6 +26,14 @@ typedef enum {
     FRAME
 }tile;
 
+logic [7:0] current_x, nxt_x;
+logic [7:0] current_y, nxt_y;
+logic [7:0] prev_x, prev_y;
+
+// Pozycja startowa
+logic [7:0] start_x = 10;
+logic [7:0] start_y = 18;
+
 //mapa
 localparam MAP_WIDTH = 64;
 localparam MAP_HEIGHT = 48;
@@ -34,6 +42,20 @@ tile map [MAP_WIDTH][MAP_HEIGHT];
 directions current_direction, nxt_direction;
 
 localparam SIZE=HOR_PIXELS/MAP_WIDTH;
+
+
+    // Koordynaty prostokąta "Play Again"
+localparam RECT_X_MIN = 237; // Przykładowa wartość
+localparam RECT_X_MAX = 787; // Przykładowa wartość
+localparam RECT_Y_MIN = 430; // Przykładowa wartość
+localparam RECT_Y_MAX = 530; // Przykładowa wartość
+
+// Koordynaty prostokąta "Play"
+localparam PLAY_X_MIN = 282; // Przykładowa wartość
+localparam PLAY_X_MAX = 742; // Przykładowa wartość
+localparam PLAY_Y_MIN = 330; // Przykładowa wartość
+localparam PLAY_Y_MAX = 450; // Przykładowa wartość
+
 
 //kolory
 localparam EMPTY_COLOR   = 12'h0_0_0;

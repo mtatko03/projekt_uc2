@@ -82,7 +82,8 @@
     .rst,
     .direction(direction),
     .map(map),
-    .player1_collision(player1_collision)
+    .player1_collision(player1_collision),
+    .mode(mode)
  );
 
  clk_div u_clk_div(
@@ -140,9 +141,12 @@
    .rst,
    .mode(mode),
    .mouse_left(mouse_left),
-   .player1_collision(player1_collision)
- );
+   .player1_collision(player1_collision),
+   .xpos(xpos),
+   .ypos(ypos)
+   );
  
+
  endmodule
  
  
