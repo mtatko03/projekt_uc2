@@ -46,6 +46,11 @@ set sv_files {
     ../rtl/top_vga.sv
     ../rtl/control.sv
     ../rtl/direction_control.sv
+    ../rtl/uart/uart.sv
+    ../rtl/uart/uart_rx.sv
+    ../rtl/uart/uart_tx.sv
+    ../rtl/uart/mod_m_counter.sv
+    ../rtl/uart/fifo.sv
     rtl/top_vga_basys3.sv
 }
 
