@@ -47,8 +47,9 @@
   import game_pkg::*;
 
   tile map [MAP_WIDTH][MAP_HEIGHT];
-  directions direction;
+  directions direction_1, direction_2;
   game_mode mode;
+  logic [1:0] selected_player;
  
  /**
   * Signals assignments
@@ -72,7 +73,9 @@
  direction_control u_direction_control(
     .clk(clk_div),
     .rst,
-    .direction(direction),
+    .direction_1(direction_1),
+    .direction_2(direction_2),
+    .selected_player(selected_player),
     .mouse_right(mouse_right),
     .mouse_left(mouse_left)
  );
@@ -80,9 +83,12 @@
  control u_control (
     .clk(clk_div),
     .rst,
-    .direction(direction),
+    .selected_player(selected_player),
+    .direction_1(direction_1),
+    .direction_2(direction_2),
     .map(map),
     .player1_collision(player1_collision),
+    .player2_collision(player2_collision),
     .mode(mode)
  );
 
@@ -142,9 +148,20 @@
    .mode(mode),
    .mouse_left(mouse_left),
    .player1_collision(player1_collision),
+   .player2_collision(player2_collision),
    .xpos(xpos),
-   .ypos(ypos)
+   .ypos(ypos),
+   .player1(player1),
+   .player2(player2)
    );
+
+   player_selector u_player_selector(
+      .clk(clk65MHz),
+      .rst,
+      .player1(player1),
+      .player2(player2),
+      .selected_player(selected_player)
+);
  
 
  endmodule

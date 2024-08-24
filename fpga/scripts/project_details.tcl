@@ -51,6 +51,7 @@ set sv_files {
     ../rtl/uart/uart_tx.sv
     ../rtl/uart/mod_m_counter.sv
     ../rtl/uart/fifo.sv
+    ../rtl/player_selector.sv
     rtl/top_vga_basys3.sv
 }
 

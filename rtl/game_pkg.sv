@@ -26,13 +26,21 @@ typedef enum {
     FRAME
 }tile;
 
-logic [7:0] current_x, nxt_x;
-logic [7:0] current_y, nxt_y;
-logic [7:0] prev_x, prev_y;
+logic [7:0] current_x_1, nxt_x_1;
+logic [7:0] current_y_1, nxt_y_1;
+logic [7:0] prev_x_1, prev_y_1;
+
+logic [7:0] current_x_2, nxt_x_2;
+logic [7:0] current_y_2, nxt_y_2;
+logic [7:0] prev_x_2, prev_y_2;
+
 
 // Pozycja startowa
-logic [7:0] start_x = 10;
-logic [7:0] start_y = 18;
+logic [7:0] start_x_1= 10;
+logic [7:0] start_y_1 = 18;
+
+logic [7:0] start_x_2 = 30;
+logic [7:0] start_y_2 = 40;
 
 //mapa
 localparam MAP_WIDTH = 64;
