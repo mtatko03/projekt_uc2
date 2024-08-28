@@ -4,7 +4,7 @@ module fifo
                W=4  // number of address bits
     )
     (
-     input wire clk, reset,
+     input wire clk, rst,
      input wire rd, wr,
      input wire [B-1:0] w_data,
      output wire empty, full,
@@ -30,8 +30,8 @@ module fifo
  
     // fifo control logic
     // register for read and write pointers
-    always @(posedge clk, posedge reset)
-       if (reset)
+    always @(posedge clk, posedge rst)
+       if (rst)
           begin
              w_ptr_reg <= 0;
              r_ptr_reg <= 0;

@@ -17,7 +17,11 @@ module control (
     input logic [1:0]  selected_player,
     output tile        map [MAP_WIDTH][MAP_HEIGHT],
     output logic       player1_collision,
-    output logic       player2_collision
+    output logic       player2_collision,
+    output logic [7:0] current_x_1,
+    output logic [7:0] current_x_2,
+    output logic [7:0] current_y_1,
+    output logic [7:0] current_y_2
 
 );
  

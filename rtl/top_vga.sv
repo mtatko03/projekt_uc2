@@ -20,6 +20,8 @@
      input  logic rst,
      inout  logic ps2_clk,
      inout  logic ps2_data,
+     input  logic rx,
+     output logic tx,
      output logic vs,
      output logic hs,
      output logic [3:0] r,
@@ -45,11 +47,17 @@
 
   logic clk_div;
   import game_pkg::*;
+  game_mode mode;
+  directions direction_1, direction_2;
+  wire rx_empty, rd_uart, tx_full, wr_uart;
+  wire [7:0] read_data, w_data;
+ 
+  wire [1:0] selected_player;
+
+  wire [7:0] current_x_1, current_x_2;
+  wire [7:0] current_y_1, current_y_2;
 
   tile map [MAP_WIDTH][MAP_HEIGHT];
-  directions direction_1, direction_2;
-  game_mode mode;
-  logic [1:0] selected_player;
  
  /**
   * Signals assignments
@@ -89,7 +97,11 @@
     .map(map),
     .player1_collision(player1_collision),
     .player2_collision(player2_collision),
-    .mode(mode)
+    .mode(mode),
+    .current_x_1(current_x_1),
+    .current_x_2(current_x_2),
+    .current_y_1(current_y_1),
+    .current_y_2(current_y_2)
  );
 
  clk_div u_clk_div(
@@ -153,7 +165,7 @@
    .ypos(ypos),
    .player1(player1),
    .player2(player2)
-   );
+);
 
    player_selector u_player_selector(
       .clk(clk65MHz),
@@ -163,6 +175,50 @@
       .selected_player(selected_player)
 );
  
+uart u_uart(
+        .clk(clk65MHz),
+        .rst,
+        .rx,
+        .tx,
+        .r_data(read_data),
+        .rd_uart,
+        .rx_empty,
+        .tx_full,
+        .w_data,
+        .wr_uart
+);
+
+uart_encoder u_uart_encoder(
+   .clk(clk65MHz),
+   .rst,
+   .tx_full,
+   .current_x_1(current_x_1),
+   .current_x_2(current_x_2),
+   .current_y_1(current_y_1),
+   .current_y_2(current_y_2),
+   .player1_collision(player1_collision),
+   .player2_collision(player2_collision),
+   .selected_player(selected_player),
+   .wr_uart,
+   .w_data
+
+);
+
+uart_decoder u_uart_decoder(
+   .clk(clk65MHz),
+   .rst,
+   .read_data,
+   .rx_empty,
+   .rd_uart,
+   .current_x_1(current_x_1),
+   .current_x_2(current_x_2),
+   .current_y_1(current_y_1),
+   .current_y_2(current_y_2),
+   .player1_collision(player1_collision),
+   .player2_collision(player2_collision),
+   .selected_player(selected_player)
+);
+
 
  endmodule
  

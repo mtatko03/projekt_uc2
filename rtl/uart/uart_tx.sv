@@ -4,7 +4,7 @@ module uart_tx
                 SB_TICK = 16  // # ticks for stop bits
     )
     (
-     input wire clk, reset,
+     input wire clk, rst,
      input wire tx_start, s_tick,
      input wire [7:0] din,
      output reg tx_done_tick,
@@ -27,8 +27,8 @@ module uart_tx
  
     // body
     // FSMD state & data registers
-    always @(posedge clk, posedge reset)
-       if (reset)
+    always @(posedge clk, posedge rst)
+       if (rst)
           begin
              state_reg <= idle;
              s_reg <= 0;

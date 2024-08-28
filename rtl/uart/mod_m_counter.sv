@@ -4,7 +4,7 @@ module mod_m_counter
                M=10 // mod-M
     )
     (
-     input wire clk, reset,
+     input wire clk, rst,
      output wire max_tick,
      output wire [N-1:0] q
     );
@@ -15,8 +15,8 @@ module mod_m_counter
  
     // body
     // register
-    always @(posedge clk, posedge reset)
-       if (reset)
+    always @(posedge clk, posedge rst)
+       if (rst)
           r_reg <= 0;
        else
           r_reg <= r_next;

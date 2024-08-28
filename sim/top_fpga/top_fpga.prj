@@ -29,6 +29,8 @@ sv work ../../rtl/vga/vga_pkg.sv \
         ../../rtl/uart/uart_rx.sv \
         ../../rtl/uart/mod_m_counter.sv \
         ../../rtl/uart/fifo.sv \
+        ../../rtl/uart/uart_encoder.sv \
+        ../../rtl/uart/uart_decoder.sv \
         ../../rtl/player_selector.sv \
         ../../fpga/rtl/top_vga_basys3.sv \
         ../common/tiff_writer.sv \
