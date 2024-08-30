@@ -28,7 +28,7 @@ always_ff@ (posedge clk) begin
 end
 
 always_comb begin
-
+    
     nxt_direction_1 = WAIT;
     nxt_direction_2 = WAIT;
 
@@ -167,6 +167,11 @@ end
             nxt_direction_2 = current_direction_2;
         end
     endcase
+end
+
+2'b00:begin
+    nxt_direction_1 = WAIT;
+    nxt_direction_2 = WAIT;
 end
 
 default: begin

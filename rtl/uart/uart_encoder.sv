@@ -10,8 +10,7 @@ module uart_encoder(
     input wire [7:0] current_x_1,  
     input wire [7:0] current_y_1,  
     input wire [7:0] current_x_2,  
-    input wire [7:0] current_y_2,
-    input wire game_start,            
+    input wire [7:0] current_y_2,        
 
     output logic wr_uart,
     output logic [7:0] w_data
@@ -57,6 +56,12 @@ module uart_encoder(
                     end
                     else if(selected_player == 2'b11)begin
                         w_data_nxt ={1'b0, current_x_2[3:0], 3'b001};
+                    end  
+                    else if(selected_player == 2'b00)begin
+                        w_data_nxt = 8'b00000001;
+                    end
+                    else begin
+                        w_data_nxt = 8'b00000001;
                     end
                 end
 
@@ -67,6 +72,12 @@ module uart_encoder(
                      else if(selected_player == 2'b11)begin
                          w_data_nxt ={1'b0, current_x_2[7:4], 3'b010};
                      end
+                     else if(selected_player == 2'b00)begin
+                        w_data_nxt = 8'b00000010;
+                    end
+                    else begin
+                        w_data_nxt = 8'b00000010;
+                    end
                 end
 
                 3'b011:begin
@@ -76,6 +87,12 @@ module uart_encoder(
                      else if(selected_player == 2'b11)begin
                          w_data_nxt ={1'b0, current_y_2[7:4], 3'b011};
                      end
+                     else if(selected_player == 2'b00)begin
+                        w_data_nxt = 8'b00000011;
+                    end
+                    else begin
+                        w_data_nxt = 8'b00000011;
+                    end
                 end
                 
                 3'b100:begin
@@ -84,6 +101,12 @@ module uart_encoder(
                     end
                     else if(selected_player == 2'b11)begin
                         w_data_nxt ={1'b0, current_y_2[3:0], 3'b100};
+                    end
+                    else if(selected_player == 2'b00)begin
+                        w_data_nxt = 8'b00000100;
+                    end
+                    else begin
+                        w_data_nxt = 8'b00000100;
                     end
                 end
 
@@ -94,10 +117,17 @@ module uart_encoder(
                     else if(selected_player == 2'b11)begin
                         w_data_nxt={4'b0000, player2_collision, 3'b101};
                     end
+                    else if(selected_player == 2'b00)begin
+                        w_data_nxt = 8'b00000101;
+                    end
+                    else begin
+                        w_data_nxt = 8'b00000101;
+                    end
                 end
              
                 
-                default:begin 
+                default:begin
+                    w_data_nxt = 8'b0000000;
                 end 
         
             endcase

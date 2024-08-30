@@ -54,6 +54,7 @@ set sv_files {
     ../rtl/uart/uart_encoder.sv 
     ../rtl/uart/uart_decoder.sv
     ../rtl/player_selector.sv
+    ../rtl/mux.sv
     rtl/top_vga_basys3.sv
 }
 

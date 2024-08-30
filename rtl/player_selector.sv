@@ -9,6 +9,7 @@ module player_selector(
     input logic player1,
     input logic player2,
     output logic [1:0] selected_player 
+    
 );
 
 logic [1:0] selected_player_nxt;

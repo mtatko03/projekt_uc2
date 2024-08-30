@@ -6,7 +6,11 @@ module uart_decoder(
     input wire [7:0] read_data, 
     input wire rx_empty,
     
-    output logic [1:0] selected_player,
+    //zmienić na osobny kabel uart_selected_player, idący bezpośrednio z tego modułu do gamemode_selectora
+    //w gamemode_controlu dalszy zakomentowany kod do obsługi tego sygnału
+    output logic [1:0] selected_player, 
+
+
     output logic  player1_collision,
     output logic  player2_collision,
     output logic [7:0] current_x_1,  
@@ -54,6 +58,7 @@ end
 
 
 always_comb begin
+    
     rd_uart_nxt = rd_uart;
     player1_collision_nxt = player1_collision;
     player2_collision_nxt = player2_collision;

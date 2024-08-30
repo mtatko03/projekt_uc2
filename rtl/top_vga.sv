@@ -53,9 +53,11 @@
   wire [7:0] read_data, w_data;
  
   wire [1:0] selected_player;
+  wire [1:0] uart_state_selector;
+  wire control_player1_collision, control_player2_collision, uart_player1_collision, uart_player2_collision ;
 
-  wire [7:0] current_x_1, current_x_2;
-  wire [7:0] current_y_1, current_y_2;
+  wire [7:0] current_x_1, current_x_2, control_current_x_1, control_current_x_2, uart_current_x_1, uart_current_x_2;
+  wire [7:0] current_y_1, current_y_2, control_current_y_1, control_current_y_2, uart_current_y_1, uart_current_y_2;
 
   tile map [MAP_WIDTH][MAP_HEIGHT];
  
@@ -95,13 +97,13 @@
     .direction_1(direction_1),
     .direction_2(direction_2),
     .map(map),
-    .player1_collision(player1_collision),
-    .player2_collision(player2_collision),
+    .player1_collision(control_player1_collision),
+    .player2_collision(control_player2_collision),
     .mode(mode),
-    .current_x_1(current_x_1),
-    .current_x_2(current_x_2),
-    .current_y_1(current_y_1),
-    .current_y_2(current_y_2)
+    .current_x_1(control_current_x_1),
+    .current_x_2(control_current_x_2),
+    .current_y_1(control_current_y_1),
+    .current_y_2(control_current_y_2)
  );
 
  clk_div u_clk_div(
@@ -161,6 +163,7 @@
    .mouse_left(mouse_left),
    .player1_collision(player1_collision),
    .player2_collision(player2_collision),
+   .uart_state_selector(uart_state_selector),
    .xpos(xpos),
    .ypos(ypos),
    .player1(player1),
@@ -210,15 +213,43 @@ uart_decoder u_uart_decoder(
    .read_data,
    .rx_empty,
    .rd_uart,
-   .current_x_1(current_x_1),
-   .current_x_2(current_x_2),
-   .current_y_1(current_y_1),
-   .current_y_2(current_y_2),
-   .player1_collision(player1_collision),
-   .player2_collision(player2_collision),
-   .selected_player(selected_player)
+   .current_x_1(uart_current_x_1),
+   .current_x_2(uart_current_x_2),
+   .current_y_1(uart_current_y_1),
+   .current_y_2(uart_current_y_2),
+   .player1_collision(uart_player1_collision),
+   .player2_collision(uart_player2_collision),
+   .selected_player(uart_state_selector)
 );
 
+mux u_mux(
+   .clk(clk65MHz),
+   .rst,
+
+   .selected_player,
+
+   .control_current_x_1,  
+   .control_current_y_1,  
+   .control_current_x_2,  
+   .control_current_y_2,
+   .control_player1_collision,
+   .control_player2_collision,
+
+
+   .uart_current_x_1,  
+   .uart_current_y_1,  
+   .uart_current_x_2,  
+   .uart_current_y_2,
+   .uart_player1_collision,
+   .uart_player2_collision,
+
+   .current_x_1,
+   .current_x_2,
+   .current_y_1,
+   .current_y_2,
+   .player1_collision,
+   .player2_collision
+);
 
  endmodule
  
