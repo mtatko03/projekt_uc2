@@ -393,7 +393,7 @@ always_comb begin
              end
         
         else                                    // The rest of active display pixels:
-            rgb_nxt = 12'h0_0_0;               
+            rgb_nxt = vga_in.rgb;               
     end
 end
 endmodule

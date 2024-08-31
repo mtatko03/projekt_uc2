@@ -26,12 +26,12 @@ typedef enum {
     FRAME
 }tile;
 
-logic [7:0] current_x_1, nxt_x_1;
-logic [7:0] current_y_1, nxt_y_1;
+logic [7:0] current_x_1, current_x_1_nxt;
+logic [7:0] current_y_1, current_y_1_nxt;
 logic [7:0] prev_x_1, prev_y_1;
 
-logic [7:0] current_x_2, nxt_x_2;
-logic [7:0] current_y_2, nxt_y_2;
+logic [7:0] current_x_2, current_x_2_nxt;
+logic [7:0] current_y_2, current_y_2_nxt;
 logic [7:0] prev_x_2, prev_y_2;
 
 

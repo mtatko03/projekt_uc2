@@ -34,7 +34,6 @@ set sv_files {
     ../rtl/vga/vga_pkg.sv
     ../rtl/vga/vga_if.sv
     ../rtl/vga/vga_timing.sv
-    ../rtl/clk_div.sv
     ../rtl/game_pkg.sv
     ../rtl/gamemode_control.sv
     ../rtl/draw/draw_main.sv
@@ -45,6 +44,7 @@ set sv_files {
     ../rtl/draw/draw_mouse.sv
     ../rtl/top_vga.sv
     ../rtl/control.sv
+    ../rtl/map_control.sv
     ../rtl/direction_control.sv
     ../rtl/uart/uart.sv
     ../rtl/uart/uart_rx.sv

@@ -12,7 +12,6 @@
 sv work ../../rtl/vga/vga_pkg.sv \
         ../../rtl/vga/vga_if.sv \
         ../../rtl/vga/vga_timing.sv \
-        ../../rtl/clk_div.sv \
         ../../rtl/game_pkg.sv \
         ../../rtl/gamemode_control.sv \
         ../../rtl/draw/draw_main.sv \
@@ -24,6 +23,7 @@ sv work ../../rtl/vga/vga_pkg.sv \
         ../../rtl/top_vga.sv \
         ../../rtl/mux.sv \
         ../../rtl/control.sv \
+        ../../rtl/map_control.sv \
         ../../rtl/uart/uart.sv \
         ../../rtl/uart/uart_rx.sv \
         ../../rtl/uart/uart_tx.sv \

@@ -45,7 +45,6 @@
   logic [11:0] xpos_buf;
   logic [11:0] ypos_buf;
 
-  logic clk_div;
   import game_pkg::*;
   game_mode mode;
   directions direction_1, direction_2;
@@ -58,6 +57,7 @@
 
   wire [7:0] current_x_1, current_x_2, control_current_x_1, control_current_x_2, uart_current_x_1, uart_current_x_2;
   wire [7:0] current_y_1, current_y_2, control_current_y_1, control_current_y_2, uart_current_y_1, uart_current_y_2;
+
 
   tile map [MAP_WIDTH][MAP_HEIGHT];
  
@@ -81,7 +81,7 @@
  );
 
  direction_control u_direction_control(
-    .clk(clk_div),
+    .clk(clk65MHz),
     .rst,
     .direction_1(direction_1),
     .direction_2(direction_2),
@@ -91,7 +91,7 @@
  );
 
  control u_control (
-    .clk(clk_div),
+    .clk(clk65MHz),
     .rst,
     .selected_player(selected_player),
     .direction_1(direction_1),
@@ -99,18 +99,22 @@
     .map(map),
     .player1_collision(control_player1_collision),
     .player2_collision(control_player2_collision),
-    .mode(mode),
     .current_x_1(control_current_x_1),
     .current_x_2(control_current_x_2),
     .current_y_1(control_current_y_1),
     .current_y_2(control_current_y_2)
- );
+     );
 
- clk_div u_clk_div(
-    .clk_in(clk65MHz),
-    .rst,
-    .clk_div(clk_div)
- );
+map_control u_map_control(
+   .clk(clk65MHz),
+   .rst,
+   .map(map),
+   .selected_player(selected_player),
+   .current_x_1(control_current_x_1),
+   .current_y_1(control_current_y_1),
+   .current_x_2(control_current_x_2),
+   .current_y_2(control_current_y_2)
+);
  
  MouseCtl u_MouseCtl(
      .clk(clk975MHz),

@@ -34,41 +34,7 @@ end
 
 always_comb begin
     case (current_game_mode)
-        /*WCZESNIEJSZA WERSJA WYBORU UZYTKOWNIKA 
-         * START: begin
-            current_direction = WAIT; // cos do zrobienia na pozniej z ta linijka 
-            if (mouse_left && (xpos >= PLAY_X_MIN && xpos <= PLAY_X_MAX) && (ypos >= PLAY_Y_MIN && ypos <= PLAY_Y_MAX)) begin
-                if(player1 == 0)begin
-                    game_mode_nxt = GAME;
-                    player1_nxt = 1;
-                    player2_nxt = 0 ;
-                end
-                else begin
-                    game_mode_nxt = current_game_mode;
-                    player1_nxt = 0;
-                    player2_nxt = 0;
-                end
-            end 
-            else if (mouse_left && (xpos >= 0 && xpos <= 1024) && (ypos >= 0 && ypos <= 300))begin
-                if(player2 == 0)begin
-                    game_mode_nxt = GAME;
-                    player2_nxt = 1;
-                    player1_nxt = 0;
-                end
-                else begin
-                    game_mode_nxt = current_game_mode;
-                    player1_nxt = 0;
-                    player2_nxt = 0;
-                end
-            end
-            else begin
-                game_mode_nxt = current_game_mode;
-                player1_nxt = 0;
-                player2_nxt = 0;
-            end
-        end
-        */
-        //PROPOZYCJA SELECTORA//
+       
         START: begin
             current_direction = WAIT; // cos do zrobienia na pozniej z ta linijka 
             if (mouse_left && (xpos > PLAY_X_MIN && xpos < PLAY_X_MAX) && (ypos > PLAY_Y_MIN && ypos < PLAY_Y_MAX)) begin
