@@ -16,198 +16,208 @@ module direction_control(
 directions current_direction_1, nxt_direction_1;
 directions current_direction_2, nxt_direction_2;
 
+logic [27:0]    count, count_nxt;
+localparam clk_loop = 32_500_000;
 
 always_ff@ (posedge clk) begin
     if(rst)begin
         current_direction_1 <= WAIT;
         current_direction_2 <= WAIT;
+        count <= 0;
     end else begin
         current_direction_1 <= nxt_direction_1;
         current_direction_2 <= nxt_direction_2;
+        count <= count_nxt;
     end
 end
 
 always_comb begin
-    
-    case(selected_player)
-    2'b01:begin
-    case(current_direction_1)
-        WAIT: begin
-            if(mouse_right)begin
-                nxt_direction_1 = RIGHT;
-                nxt_direction_2 = current_direction_2;
-            end 
-            else if (mouse_left)begin
-                nxt_direction_1 = LEFT;
-                nxt_direction_2 = current_direction_2;
-            end
-            else begin
-                nxt_direction_1 = WAIT;
-                nxt_direction_2 = current_direction_2;
-            end
-        end
+    if(count >= clk_loop) begin
+        case(selected_player)
+        2'b01:begin
+            case(current_direction_1)
+                WAIT: begin
+                    if(mouse_right)begin
+                        nxt_direction_1 = RIGHT;
+                        nxt_direction_2 = current_direction_2;
+                    end 
+                    else if (mouse_left)begin
+                        nxt_direction_1 = LEFT;
+                        nxt_direction_2 = current_direction_2;
+                    end
+                    else begin
+                        nxt_direction_1 = WAIT;
+                        nxt_direction_2 = current_direction_2;
+                    end
+                end
 
-        RIGHT:begin
-            if(mouse_right)begin
-                nxt_direction_1 = DOWN;
-                nxt_direction_2 = current_direction_2;
-            end 
-            else if (mouse_left) begin
-                nxt_direction_1 = UP;
-                nxt_direction_2 = current_direction_2;
-            end 
-            else begin
-                nxt_direction_1 = RIGHT;
-                nxt_direction_2 = current_direction_2;
-            end
-        end
+                RIGHT:begin
+                    if(mouse_right)begin
+                        nxt_direction_1 = DOWN;
+                        nxt_direction_2 = current_direction_2;
+                    end 
+                    else if (mouse_left) begin
+                        nxt_direction_1 = UP;
+                        nxt_direction_2 = current_direction_2;
+                    end 
+                    else begin
+                        nxt_direction_1 = RIGHT;
+                        nxt_direction_2 = current_direction_2;
+                    end
+                end
 
-        DOWN:begin
-            if(mouse_right)begin
-                nxt_direction_1 = LEFT;
-                nxt_direction_2 = current_direction_2;
-            end 
-            else if (mouse_left)begin
-                nxt_direction_1 = RIGHT;
-                nxt_direction_2 = current_direction_2;
-            end 
-            else begin 
-                nxt_direction_1 = DOWN;
-                nxt_direction_2 = current_direction_2;
-            end
-        end
+                DOWN:begin
+                    if(mouse_right)begin
+                        nxt_direction_1 = LEFT;
+                        nxt_direction_2 = current_direction_2;
+                    end 
+                    else if (mouse_left)begin
+                        nxt_direction_1 = RIGHT;
+                        nxt_direction_2 = current_direction_2;
+                    end 
+                    else begin 
+                        nxt_direction_1 = DOWN;
+                        nxt_direction_2 = current_direction_2;
+                    end
+                end
 
-        LEFT:begin
-            if(mouse_right)begin
-                nxt_direction_1 = UP;
-                nxt_direction_2 = current_direction_2;
-            end 
-            else if (mouse_left)begin
-                nxt_direction_1 = DOWN;
-                nxt_direction_2 = current_direction_2;
-            end 
-            else begin 
-                nxt_direction_1 = LEFT;
-                nxt_direction_2 = current_direction_2;
-            end
-        end
+                LEFT:begin
+                    if(mouse_right)begin
+                        nxt_direction_1 = UP;
+                        nxt_direction_2 = current_direction_2;
+                    end 
+                    else if (mouse_left)begin
+                        nxt_direction_1 = DOWN;
+                        nxt_direction_2 = current_direction_2;
+                    end 
+                    else begin 
+                        nxt_direction_1 = LEFT;
+                        nxt_direction_2 = current_direction_2;
+                    end
+                end
 
-        UP:begin
-            if(mouse_right)begin
-                nxt_direction_1 = RIGHT;
-                nxt_direction_2 = current_direction_2;
-            end 
-            else if (mouse_left)begin
-                nxt_direction_1 = LEFT;
-                nxt_direction_2 = current_direction_2;
-            end 
-            else begin 
-                nxt_direction_1 = UP;
-                nxt_direction_2 = current_direction_2;
-            end
-        end
+                UP:begin
+                    if(mouse_right)begin
+                        nxt_direction_1 = RIGHT;
+                        nxt_direction_2 = current_direction_2;
+                    end 
+                    else if (mouse_left)begin
+                        nxt_direction_1 = LEFT;
+                        nxt_direction_2 = current_direction_2;
+                    end 
+                    else begin 
+                        nxt_direction_1 = UP;
+                        nxt_direction_2 = current_direction_2;
+                    end
+                end
         
-        default:begin
+                default:begin
+                        nxt_direction_1 = WAIT;
+                        nxt_direction_2 = WAIT; //jesli nie zadziala to nxt_direction_1 = current_direction_1;
+                end
+                endcase
+            end
+
+        2'b11:begin
+            case(current_direction_2)
+                WAIT: begin
+                    if(mouse_right)begin
+                        nxt_direction_2 = RIGHT;
+                        nxt_direction_1 = current_direction_1;
+                    end 
+                    else if (mouse_left)begin
+                        nxt_direction_2 = LEFT;
+                        nxt_direction_1 = current_direction_1;
+                    end
+                    else begin
+                        nxt_direction_2 = WAIT;
+                        nxt_direction_1 = current_direction_1;
+                    end
+                end
+
+            RIGHT:begin
+                    if(mouse_right)begin
+                        nxt_direction_2 = DOWN;
+                        nxt_direction_1 = current_direction_1;
+                    end 
+                    else if (mouse_left) begin
+                        nxt_direction_2 = UP;
+                        nxt_direction_1 = current_direction_1;
+                    end 
+                    else begin
+                        nxt_direction_2 = RIGHT;
+                        nxt_direction_1 = current_direction_1;
+                    end
+                end
+
+            DOWN:begin
+                    if(mouse_right)begin
+                        nxt_direction_2 = LEFT;
+                        nxt_direction_1 = current_direction_1;
+                    end 
+                    else if (mouse_left)begin
+                        nxt_direction_2 = RIGHT;
+                        nxt_direction_1 = current_direction_1;
+                    end 
+                    else begin 
+                        nxt_direction_2 = DOWN;
+                        nxt_direction_1 = current_direction_1;
+                    end
+                end
+
+            LEFT:begin
+                    if(mouse_right)begin
+                        nxt_direction_2 = UP;
+                        nxt_direction_1 = current_direction_1;
+                    end 
+                    else if (mouse_left)begin
+                        nxt_direction_2 = DOWN;
+                        nxt_direction_1 = current_direction_1;
+                    end 
+                    else begin 
+                        nxt_direction_2 = LEFT;
+                        nxt_direction_1 = current_direction_1;
+                    end
+                end
+
+            UP:begin
+                    if(mouse_right)begin
+                        nxt_direction_2 = RIGHT;
+                        nxt_direction_1 = current_direction_1;
+                    end 
+                    else if (mouse_left)begin
+                        nxt_direction_2 = LEFT;
+                        nxt_direction_1 = current_direction_1;
+                    end 
+                    else begin 
+                        nxt_direction_2 = UP;
+                        nxt_direction_1 = current_direction_1;
+                    end
+                end
+        
+            default:begin
+                    nxt_direction_2 = WAIT;
+                    nxt_direction_1 = WAIT;
+                end
+            endcase
+        end
+
+        2'b00:begin
             nxt_direction_1 = WAIT;
-            nxt_direction_2 = WAIT; //jesli nie zadziala to nxt_direction_1 = current_direction_1;
-        end
-    endcase
-end
-
-2'b11:begin
-    case(current_direction_2)
-        WAIT: begin
-            if(mouse_right)begin
-                nxt_direction_2 = RIGHT;
-                nxt_direction_1 = current_direction_1;
-            end 
-            else if (mouse_left)begin
-                nxt_direction_2 = LEFT;
-                nxt_direction_1 = current_direction_1;
-            end
-            else begin
-                nxt_direction_2 = WAIT;
-                nxt_direction_1 = current_direction_1;
-            end
-        end
-
-        RIGHT:begin
-            if(mouse_right)begin
-                nxt_direction_2 = DOWN;
-                nxt_direction_1 = current_direction_1;
-            end 
-            else if (mouse_left) begin
-                nxt_direction_2 = UP;
-                nxt_direction_1 = current_direction_1;
-            end 
-            else begin
-                nxt_direction_2 = RIGHT;
-                nxt_direction_1 = current_direction_1;
-            end
-        end
-
-        DOWN:begin
-            if(mouse_right)begin
-                nxt_direction_2 = LEFT;
-                nxt_direction_1 = current_direction_1;
-            end 
-            else if (mouse_left)begin
-                nxt_direction_2 = RIGHT;
-                nxt_direction_1 = current_direction_1;
-            end 
-            else begin 
-                nxt_direction_2 = DOWN;
-                nxt_direction_1 = current_direction_1;
-            end
-        end
-
-        LEFT:begin
-            if(mouse_right)begin
-                nxt_direction_2 = UP;
-                nxt_direction_1 = current_direction_1;
-            end 
-            else if (mouse_left)begin
-                nxt_direction_2 = DOWN;
-                nxt_direction_1 = current_direction_1;
-            end 
-            else begin 
-                nxt_direction_2 = LEFT;
-                nxt_direction_1 = current_direction_1;
-            end
-        end
-
-        UP:begin
-            if(mouse_right)begin
-                nxt_direction_2 = RIGHT;
-                nxt_direction_1 = current_direction_1;
-            end 
-            else if (mouse_left)begin
-                nxt_direction_2 = LEFT;
-                nxt_direction_1 = current_direction_1;
-            end 
-            else begin 
-                nxt_direction_2 = UP;
-                nxt_direction_1 = current_direction_1;
-            end
-        end
-        
-        default:begin
             nxt_direction_2 = WAIT;
-            nxt_direction_1 = WAIT;
-        end
-    endcase
-end
-
-2'b00:begin
-    nxt_direction_1 = WAIT;
-    nxt_direction_2 = WAIT;
-end
+    end
 
 default: begin
     nxt_direction_1 = current_direction_1;
     nxt_direction_2 = current_direction_2;
     end
     endcase
+    count_nxt = 0;
+ 
+         end else begin
+ 
+             count_nxt = count + 1;
+     end
 end
 
 assign direction_1 = current_direction_1;

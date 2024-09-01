@@ -28,20 +28,20 @@
      output logic [3:0] g,
      output logic [3:0] b
  );
- 
- 
+
+
  /**
   * Local variables and signals
   */
- 
+
  // VGA signals from timing
   vga_if vga_timing();
   vga_if mouse_out();
   vga_if vga_screen();
- 
+
   logic [11:0] xpos;
   logic [11:0] ypos;
- 
+
   logic [11:0] xpos_buf;
   logic [11:0] ypos_buf;
 
@@ -50,7 +50,7 @@
   directions direction_1, direction_2;
   wire rx_empty, rd_uart, tx_full, wr_uart;
   wire [7:0] read_data, w_data;
- 
+
   wire [1:0] selected_player;
   wire [1:0] uart_state_selector;
   wire control_player1_collision, control_player2_collision, uart_player1_collision, uart_player2_collision ;
@@ -60,20 +60,20 @@
 
 
   tile map [MAP_WIDTH][MAP_HEIGHT];
- 
+
  /**
   * Signals assignments
   */
- 
+
  assign vs = mouse_out.vsync;
  assign hs = mouse_out.hsync;
  assign {r,g,b} = mouse_out.rgb;
- 
- 
+
+
  /**
   * Submodules instances
   */
- 
+
  vga_timing u_vga_timing (
     .clk(clk65MHz),
     .rst,
@@ -115,7 +115,7 @@ map_control u_map_control(
    .current_x_2(control_current_x_2),
    .current_y_2(control_current_y_2)
 );
- 
+
  MouseCtl u_MouseCtl(
      .clk(clk975MHz),
      .rst,
@@ -123,7 +123,7 @@ map_control u_map_control(
      .ps2_clk,
      .xpos(xpos_buf),
      .ypos(ypos_buf),
- 
+
      .zpos(),
      .left(mouse_left),
      .middle(),
@@ -135,7 +135,7 @@ map_control u_map_control(
      .setmax_x('0),
      .setmax_y('0)
  );
- 
+
  always_ff @(posedge clk65MHz) begin
      xpos <= xpos_buf;
      ypos <= ypos_buf;
@@ -181,7 +181,7 @@ map_control u_map_control(
       .player2(player2),
       .selected_player(selected_player)
 );
- 
+
 uart u_uart(
         .clk(clk65MHz),
         .rst,
@@ -232,17 +232,17 @@ mux u_mux(
 
    .selected_player,
 
-   .control_current_x_1,  
-   .control_current_y_1,  
-   .control_current_x_2,  
+   .control_current_x_1,
+   .control_current_y_1,
+   .control_current_x_2,
    .control_current_y_2,
    .control_player1_collision,
    .control_player2_collision,
 
 
-   .uart_current_x_1,  
-   .uart_current_y_1,  
-   .uart_current_x_2,  
+   .uart_current_x_1,
+   .uart_current_y_1,
+   .uart_current_x_2,
    .uart_current_y_2,
    .uart_player1_collision,
    .uart_player2_collision,
@@ -256,9 +256,3 @@ mux u_mux(
 );
 
  endmodule
- 
- 
- 
- 
- 
- 

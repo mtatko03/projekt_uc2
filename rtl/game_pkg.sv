@@ -23,7 +23,8 @@ typedef enum {
     EMPTY,
     PLAYER1,
     PLAYER2,
-    FRAME
+    FRAME,
+    TEST
 }tile;
 
 logic [7:0] current_x_1, current_x_1_nxt;

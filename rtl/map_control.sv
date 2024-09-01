@@ -43,6 +43,8 @@ always_comb begin
                     map_nxt[i][j] = PLAYER2;
                 end else if (i == 0 || i == MAP_WIDTH-1 || j == 0 || j == MAP_HEIGHT -1 )begin
                     map_nxt[i][j] = FRAME;
+                end else if(i == 10 && j ==40)begin
+                    map_nxt[i][j] = TEST;
                 end else begin
                     map_nxt[i][j] = EMPTY;
                 end

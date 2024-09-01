@@ -51,6 +51,7 @@ always_comb begin
         PLAYER1:   rgb_nxt = PLAYER1_COLOR;
         PLAYER2:   rgb_nxt = PLAYER2_COLOR;
         FRAME:     rgb_nxt = FRAME_COLOR;
+        TEST:       rgb_nxt = FRAME_COLOR;
         default:   rgb_nxt = EMPTY_COLOR;
     endcase
 end
