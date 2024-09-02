@@ -11,7 +11,7 @@ typedef enum {
     GAME_OVER
 }game_mode;
 
-typedef enum{
+typedef enum bit [2:0]{
     WAIT, 
     RIGHT,
     LEFT,
@@ -53,17 +53,24 @@ directions current_direction, nxt_direction;
 localparam SIZE=HOR_PIXELS/MAP_WIDTH;
 
 
-    // Koordynaty prostokąta "Play Again"
-localparam RECT_X_MIN = 237; // Przykładowa wartość
-localparam RECT_X_MAX = 787; // Przykładowa wartość
-localparam RECT_Y_MIN = 430; // Przykładowa wartość
-localparam RECT_Y_MAX = 530; // Przykładowa wartość
+// Koordynaty prostokąta "Play Again"
+localparam RECT_X_MIN = 237; 
+localparam RECT_X_MAX = 787; 
+localparam RECT_Y_MIN = 430; 
+localparam RECT_Y_MAX = 530; 
 
-// Koordynaty prostokąta "Play"
-localparam PLAY_X_MIN = 282; // Przykładowa wartość
-localparam PLAY_X_MAX = 742; // Przykładowa wartość
-localparam PLAY_Y_MIN = 330; // Przykładowa wartość
-localparam PLAY_Y_MAX = 450; // Przykładowa wartość
+// Koordynaty prostokąta "Player 1"
+localparam PLAY_X_MIN1 = 282; 
+localparam PLAY_X_MAX1 = 742; 
+localparam PLAY_Y_MIN1 = 330; 
+localparam PLAY_Y_MAX1 = 450; 
+
+// Koordynaty prostokąta "Player 2"
+localparam PLAY_X_MIN2 = 282; 
+localparam PLAY_X_MAX2 = 742; 
+localparam PLAY_Y_MIN2 = 480; 
+localparam PLAY_Y_MAX2 = 600; 
+
 
 
 //kolory

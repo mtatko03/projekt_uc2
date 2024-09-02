@@ -58,21 +58,21 @@
  
      end else begin
         
-        nxt_x_1     <= nxt_x_1_nxt;
-        nxt_y_1     <= nxt_y_1_nxt; 
-     current_x_1 <= current_x_1_nxt ;
-     current_y_1 <= current_y_1_nxt ;
-      player1_collision <=  player1_collision_nxt ;
- 
-      nxt_x_2     <= nxt_x_2_nxt;
-      nxt_y_2     <= nxt_y_2_nxt; 
-     current_x_2 <= current_x_2_nxt ;
-     current_y_2 <= current_y_2_nxt ;
-     player2_collision <=  player2_collision_nxt ;
- 
-     count<= count_nxt;
- 
-     end
+    nxt_x_1 <= nxt_x_1_nxt;
+    nxt_y_1 <= nxt_y_1_nxt; 
+    current_x_1 <= current_x_1_nxt ;
+    current_y_1 <= current_y_1_nxt ;
+    player1_collision <=  player1_collision_nxt ;
+
+    nxt_x_2 <= nxt_x_2_nxt;
+    nxt_y_2 <= nxt_y_2_nxt; 
+    current_x_2 <= current_x_2_nxt ;
+    current_y_2 <= current_y_2_nxt ;
+    player2_collision <=  player2_collision_nxt ;
+
+    count<= count_nxt;
+
+    end
  
  end
 
@@ -85,7 +85,7 @@
 
             current_x_1_nxt = current_x_1;
             current_y_1_nxt = current_y_1;
-            player1_collision_nxt = 1; //original 1
+            player1_collision_nxt = 1;
             nxt_x_1_nxt = nxt_x_1;
             nxt_y_1_nxt = nxt_y_1;
 
@@ -116,7 +116,7 @@
  
             current_x_2_nxt = current_x_2;
             current_y_2_nxt = current_y_2;
-            player2_collision_nxt = 1; //original 1
+            player2_collision_nxt = 1; 
             nxt_x_1_nxt = nxt_x_1;
             nxt_y_1_nxt = nxt_y_1;
 
@@ -177,7 +177,7 @@
                  //aktualizacja pozycji
      if(count >= clk_loop) begin
          case(selected_player)
-         2'b01: begin //DOPISAĆ CO SIĘ DZIEJE Z nxt_x_2 i nxt_y_2
+         2'b01: begin
          // Ustalanie nowej pozycji
              case(direction_1)
                  WAIT: begin
@@ -225,7 +225,7 @@
              endcase
          end
  
-         2'b11:begin //DOPISAĆ CO SIĘ DZIEJE Z nxt_x_1 i nxt_y_1
+         2'b11:begin 
              // Ustalanie nowej pozycji
              case(direction_2)
                  WAIT: begin

@@ -1,6 +1,6 @@
 Warnings, critical warnings and errors from synthesis and implementation
 
-Created: 2024-09-02 08:44:36
+Created: 2024-09-02 19:30:40
 
 ----SYNTHESIS----
 WARNING: [Synth 8-5856] 3D RAM map_reg  for this pattern/configuration is not supported. This will most likely be implemented in registers
@@ -11,8 +11,6 @@ WARNING: [Synth 8-6014] Unused sequential element set_y.inc_reg was removed.  [r
 WARNING: [Synth 8-6014] Unused sequential element set_y.y_inter_reg was removed.  [rtl/mouse/MouseCtl.vhd:520]
 WARNING: [Synth 8-614] signal 'blank' is read in the process but is not in the sensitivity list [rtl/mouse/MouseDisplay.vhd:214]
 WARNING: [Synth 8-614] signal 'rgb_in' is read in the process but is not in the sensitivity list [rtl/mouse/MouseDisplay.vhd:214]
-WARNING: [Synth 8-6014] Unused sequential element selected_player_reg was removed.  [rtl/player_selector.sv:26]
-WARNING: [Synth 8-7129] Port read_data[7] in module uart_decoder is either unconnected or has no load
 WARNING: [Synth 8-7129] Port uart_state_selector[1] in module gamemode_control is either unconnected or has no load
 WARNING: [Synth 8-7129] Port uart_state_selector[0] in module gamemode_control is either unconnected or has no load
 WARNING: [Synth 8-7129] Port vga_in\.rgb[11] in module draw_map is either unconnected or has no load
@@ -27,7 +25,6 @@ WARNING: [Synth 8-7129] Port vga_in\.rgb[3] in module draw_map is either unconne
 WARNING: [Synth 8-7129] Port vga_in\.rgb[2] in module draw_map is either unconnected or has no load
 WARNING: [Synth 8-7129] Port vga_in\.rgb[1] in module draw_map is either unconnected or has no load
 WARNING: [Synth 8-7129] Port vga_in\.rgb[0] in module draw_map is either unconnected or has no load
-WARNING: [Synth 8-7129] Port read_data[7] in module uart_decoder is either unconnected or has no load
 WARNING: [Synth 8-7129] Port uart_state_selector[1] in module gamemode_control is either unconnected or has no load
 WARNING: [Synth 8-7129] Port uart_state_selector[0] in module gamemode_control is either unconnected or has no load
 

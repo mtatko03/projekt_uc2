@@ -53,7 +53,9 @@
 
   wire [1:0] selected_player;
   wire [1:0] uart_state_selector;
-  wire control_player1_collision, control_player2_collision, uart_player1_collision, uart_player2_collision ;
+  wire control_player1_collision, control_player2_collision, uart_player1_collision, uart_player2_collision, player1_collision, player2_collision;
+  wire player1, player2;
+  wire mouse_left, mouse_right;
 
   wire [7:0] current_x_1, current_x_2, control_current_x_1, control_current_x_2, uart_current_x_1, uart_current_x_2;
   wire [7:0] current_y_1, current_y_2, control_current_y_1, control_current_y_2, uart_current_y_1, uart_current_y_2;

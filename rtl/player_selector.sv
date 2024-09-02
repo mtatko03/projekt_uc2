@@ -12,13 +12,11 @@ module player_selector(
     
 );
 
+
 logic [1:0] selected_player_nxt;
 
-enum logic [1:0] {
-    IDLE = 2'b00,
-    PLAYER_1 = 2'b01,
-    PLAYER_2 = 2'b11
-} state, state_nxt;
+typedef enum bit [2:0] {IDLE, PLAYER_1, PLAYER_2} state_machine;
+state_machine  state, state_nxt;
 
 always_ff @(posedge clk) begin
     if(rst) begin

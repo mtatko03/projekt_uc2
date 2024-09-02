@@ -5,9 +5,6 @@ module uart_decoder(
     input wire rst,
     input wire [7:0] read_data, 
     input wire rx_empty,
-    
-    //zmienić na osobny kabel uart_selected_player, idący bezpośrednio z tego modułu do gamemode_selectora
-    //w gamemode_controlu dalszy zakomentowany kod do obsługi tego sygnału
     output logic [1:0] selected_player, 
 
 

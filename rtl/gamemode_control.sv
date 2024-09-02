@@ -37,7 +37,7 @@ always_comb begin
        
         START: begin
             current_direction = WAIT; // cos do zrobienia na pozniej z ta linijka 
-            if (mouse_left && (xpos > PLAY_X_MIN && xpos < PLAY_X_MAX) && (ypos > PLAY_Y_MIN && ypos < PLAY_Y_MAX)) begin
+            if (mouse_left && (xpos > PLAY_X_MIN1 && xpos < PLAY_X_MAX1) && (ypos > PLAY_Y_MIN1 && ypos < PLAY_Y_MAX1)) begin
                 if(player1 == 0) begin
                     game_mode_nxt = GAME;
                     player1_nxt = 1;
@@ -49,7 +49,7 @@ always_comb begin
                     player2_nxt = 0;
                 end
             end
-            else if (mouse_left && (xpos >= 0 && xpos <= 1024) && (ypos >= 0 && ypos <= 300))begin
+            else if (mouse_left && (xpos > PLAY_X_MIN2 && xpos < PLAY_X_MAX2) && (ypos > PLAY_Y_MIN2 && ypos < PLAY_Y_MAX2)) begin
                 if(player2 == 0)begin
                 game_mode_nxt = GAME;
                 player1_nxt = 0;

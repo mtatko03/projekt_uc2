@@ -120,7 +120,7 @@ always_comb begin
         
                 default:begin
                         nxt_direction_1 = current_direction_1;
-                        nxt_direction_2 = current_direction_2; //jesli nie zadziala to nxt_direction_1 = current_direction_1;
+                        nxt_direction_2 = current_direction_2; 
                 end
                 endcase
             end
