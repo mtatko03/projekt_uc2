@@ -70,11 +70,11 @@ always_comb begin
 
     //przyklad//
     if(rx_empty == 1'b0)begin
-        case(read_data[2:0]) //bits [7:3] left empty. bits [2:0] - opcode
-            3'b000:begin
+        case(read_data[3:0]) //bits [7:3] left empty. bits [2:0] - opcode
+            4'b0000:begin
                 selected_player_nxt = read_data[5:4];
             end
-            3'b001: begin
+            4'b0001: begin
                 if(selected_player == 2'b01)begin
                     current_x_1_nxt[3:0] = read_data[7:4];
                 end else begin
@@ -82,7 +82,7 @@ always_comb begin
                 end
                 
             end
-            3'b010: begin
+            4'b0010: begin
                 if(selected_player == 2'b01)begin
                     current_x_1_nxt[7:4] = read_data[7:4];
                 end else begin
@@ -90,7 +90,7 @@ always_comb begin
                 end
             end
 
-            3'b011: begin
+            4'b0011: begin
                 if(selected_player == 2'b01)begin
                     current_y_1_nxt[7:4] = read_data[7:4];
                 end else begin
@@ -98,7 +98,7 @@ always_comb begin
                 end
 
             end
-            3'b100: begin
+            4'b0100: begin
                 if(selected_player == 2'b01)begin
                     current_y_1_nxt[3:0] = read_data[7:4];
                 end else begin
@@ -106,7 +106,7 @@ always_comb begin
                 end
             end
             
-            3'b101: begin
+            4'b0101: begin
                 if(selected_player == 2'b01)begin
                     player1_collision_nxt = read_data[4];
                 end else begin

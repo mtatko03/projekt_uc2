@@ -18,7 +18,7 @@ module uart_encoder(
 
 
     logic [7:0] w_data_nxt;
-    logic [2:0] module_counter, module_counter_nxt;
+    logic [3:0] module_counter, module_counter_nxt;
     logic wr_uart_nxt;
     logic tx_tick, tx_tick_nxt;
    
@@ -45,17 +45,17 @@ module uart_encoder(
     always_comb begin
         if(tx_full == 1'b0) begin
             case(module_counter)
-                3'b000: begin
-                    w_data_nxt ={3'b000, selected_player, 3'b000};   
+                4'b000: begin
+                    w_data_nxt ={2'b00, selected_player, 4'b0000};   
                 end
             
 
-                3'b001:begin
+                4'b0001:begin
                     if(selected_player == 2'b01)begin
-                       w_data_nxt ={1'b0, current_x_1[3:0], 3'b001};
+                       w_data_nxt ={current_x_1[3:0], 4'b0001};
                     end
                     else if(selected_player == 2'b11)begin
-                        w_data_nxt ={1'b0, current_x_2[3:0], 3'b001};
+                        w_data_nxt ={current_x_2[3:0], 4'b0001};
                     end  
                     else if(selected_player == 2'b00)begin
                         w_data_nxt = 8'b00000001;
@@ -65,12 +65,12 @@ module uart_encoder(
                     end
                 end
 
-                3'b010:begin
+                4'b0010:begin
                     if(selected_player == 2'b01)begin
-                        w_data_nxt ={1'b0, current_x_1[7:4], 3'b010};
+                        w_data_nxt ={current_x_1[7:4], 4'b0010};
                      end
                      else if(selected_player == 2'b11)begin
-                         w_data_nxt ={1'b0, current_x_2[7:4], 3'b010};
+                         w_data_nxt ={current_x_2[7:4], 4'b0010};
                      end
                      else if(selected_player == 2'b00)begin
                         w_data_nxt = 8'b00000010;
@@ -80,12 +80,12 @@ module uart_encoder(
                     end
                 end
 
-                3'b011:begin
+                4'b0011:begin
                     if(selected_player == 2'b01)begin
-                        w_data_nxt ={1'b0, current_y_1[7:4], 3'b011};
+                        w_data_nxt ={current_y_1[7:4], 4'b0011};
                      end
                      else if(selected_player == 2'b11)begin
-                         w_data_nxt ={1'b0, current_y_2[7:4], 3'b011};
+                         w_data_nxt ={current_y_2[7:4], 4'b0011};
                      end
                      else if(selected_player == 2'b00)begin
                         w_data_nxt = 8'b00000011;
@@ -95,12 +95,12 @@ module uart_encoder(
                     end
                 end
                 
-                3'b100:begin
+                4'b0100:begin
                     if(selected_player == 2'b01)begin
-                       w_data_nxt ={1'b0, current_y_1[3:0], 3'b100};
+                       w_data_nxt ={current_y_1[3:0], 4'b0100};
                     end
                     else if(selected_player == 2'b11)begin
-                        w_data_nxt ={1'b0, current_y_2[3:0], 3'b100};
+                        w_data_nxt ={current_y_2[3:0], 4'b0100};
                     end
                     else if(selected_player == 2'b00)begin
                         w_data_nxt = 8'b00000100;
@@ -110,12 +110,12 @@ module uart_encoder(
                     end
                 end
 
-                3'b101: begin
+                4'b0101: begin
                     if(selected_player == 2'b01)begin
-                        w_data_nxt ={4'b0000, player1_collision, 3'b101};
+                        w_data_nxt ={3'b000, player1_collision, 4'b0101};
                     end
                     else if(selected_player == 2'b11)begin
-                        w_data_nxt={4'b0000, player2_collision, 3'b101};
+                        w_data_nxt={3'b000, player2_collision,  4'b0101};
                     end
                     else if(selected_player == 2'b00)begin
                         w_data_nxt = 8'b00000101;

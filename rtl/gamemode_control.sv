@@ -49,12 +49,12 @@ always_comb begin
                     player2_nxt = 0;
                 end
             end
-            else if (uart_state_selector) begin
-                if(player2 == 0) begin
-                    game_mode_nxt = GAME;
-                    player1_nxt = 0;
-                    player2_nxt = 1;
-                end
+            else if (mouse_left && (xpos >= 0 && xpos <= 1024) && (ypos >= 0 && ypos <= 300))begin
+                if(player2 == 0)begin
+                game_mode_nxt = GAME;
+                player1_nxt = 0;
+                player2_nxt = 1;
+            end
                 else begin
                     game_mode_nxt = current_game_mode;
                     player1_nxt = 0;
