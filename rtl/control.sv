@@ -33,10 +33,10 @@
 
  //params
  
- localparam clk_loop = 32_500_000;
+ localparam clk_loop = 16_250_000;
  
- 
- 
+
+
  always_ff @(posedge clk) begin
      if(rst)begin
  

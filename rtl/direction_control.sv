@@ -17,7 +17,7 @@ directions current_direction_1, nxt_direction_1;
 directions current_direction_2, nxt_direction_2;
 
 logic [27:0]    count, count_nxt;
-localparam clk_loop = 32_500_000;
+localparam clk_loop = 8_125_000;
 
 always_ff@ (posedge clk) begin
     if(rst)begin
@@ -207,14 +207,15 @@ always_comb begin
             nxt_direction_2 = WAIT;
     end
 
-default: begin
-    nxt_direction_1 = current_direction_1;
-    nxt_direction_2 = current_direction_2;
+        default: begin
+            nxt_direction_1 = current_direction_1;
+            nxt_direction_2 = current_direction_2;
     end
     endcase
+
     count_nxt = 0;
  
-         end else begin
+    end else begin
  
              count_nxt = count + 1;
      end
