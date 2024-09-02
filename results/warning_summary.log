@@ -1,6 +1,6 @@
 Warnings, critical warnings and errors from synthesis and implementation
 
-Created: 2024-09-02 19:30:40
+Created: 2024-09-02 20:31:13
 
 ----SYNTHESIS----
 WARNING: [Synth 8-5856] 3D RAM map_reg  for this pattern/configuration is not supported. This will most likely be implemented in registers

@@ -115,27 +115,27 @@ map_control u_map_control(
    .current_x_1(control_current_x_1),
    .current_y_1(control_current_y_1),
    .current_x_2(control_current_x_2),
-   .current_y_2(control_current_y_2)
-);
+   .current_y_2(control_current_y_2),
+   .mode(mode)
+   );
 
  MouseCtl u_MouseCtl(
-     .clk(clk975MHz),
-     .rst,
-     .ps2_data,
-     .ps2_clk,
-     .xpos(xpos_buf),
-     .ypos(ypos_buf),
-
-     .zpos(),
-     .left(mouse_left),
-     .middle(),
-     .right(mouse_right),
-     .new_event(),
-     .value('0),
-     .setx('0),
-     .sety('0),
-     .setmax_x('0),
-     .setmax_y('0)
+   .clk(clk975MHz),
+   .rst,
+   .ps2_data,
+   .ps2_clk,
+   .xpos(xpos_buf),
+   .ypos(ypos_buf),
+   .zpos(),
+   .left(mouse_left),
+   .middle(),
+   .right(mouse_right),
+   .new_event(),
+   .value('0),
+   .setx('0),
+   .sety('0),
+   .setmax_x('0),
+   .setmax_y('0)
  );
 
  always_ff @(posedge clk65MHz) begin

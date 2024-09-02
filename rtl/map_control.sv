@@ -8,6 +8,7 @@ module map_control (
     input logic        clk,
     input logic        rst,
     input logic [1:0]  selected_player,
+    input game_mode mode,
     output tile        map [MAP_WIDTH][MAP_HEIGHT],
     input logic [7:0]  current_x_1,
     input logic [7:0]  current_y_1,
@@ -33,7 +34,7 @@ always_ff @(posedge clk) begin
 end
 
 always_comb begin
-    if( initialization == 0)begin
+    if( initialization == 0 || mode == PLAYER1_WIN || mode == PLAYER2_WIN )begin
 
         for (bit [7:0] j = 0; j < MAP_HEIGHT; j++) begin
             for (bit [7:0] i = 0; i < MAP_WIDTH; i++) begin
