@@ -1,5 +1,7 @@
-/*
- * draws the screen when player1 wins
+/**
+ * Author: Magdalena Tatko
+ * MTM UEC2
+ * Description: draws the screen when player1 wins
  */ 
 
  `timescale 1 ns / 1 ps

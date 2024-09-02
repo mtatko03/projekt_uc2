@@ -1,4 +1,7 @@
-
+/**
+ * Author: Agnieszka Wroblewska, Magdalena Tatko
+ * MTM UEC2
+ */
 package game_pkg;
 import vga_pkg::*;
 

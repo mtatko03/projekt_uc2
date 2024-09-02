@@ -1,5 +1,7 @@
-/*
- * This module controls the movement of the player on the map based on the direction
+/**
+ * Author: Agnieszka Wroblewska, Magdalena Tatko
+ * MTM UEC2
+ * Description: This module controls the movement of the player on the map based on the direction
  */
 
 `timescale 1ns/1ps

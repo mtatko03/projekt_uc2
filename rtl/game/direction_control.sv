@@ -1,3 +1,9 @@
+/**
+ * Author: Agnieszka Wroblewska, Magdalena Tatko
+ * MTM UEC2
+ * Description: Control direction
+ */
+
 `timescale 1ns/1ps
 
 import game_pkg::*;

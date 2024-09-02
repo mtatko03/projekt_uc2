@@ -34,8 +34,8 @@ set sv_files {
     ../rtl/vga/vga_pkg.sv
     ../rtl/vga/vga_if.sv
     ../rtl/vga/vga_timing.sv
-    ../rtl/game_pkg.sv
-    ../rtl/gamemode_control.sv
+    ../rtl/game/game_pkg.sv
+    ../rtl/game/gamemode_control.sv
     ../rtl/draw/draw_main.sv
     ../rtl/draw/draw_start.sv
     ../rtl/draw/draw_player1_win.sv 
@@ -43,9 +43,9 @@ set sv_files {
     ../rtl/draw/draw_map.sv
     ../rtl/draw/draw_mouse.sv
     ../rtl/top_vga.sv
-    ../rtl/control.sv
-    ../rtl/map_control.sv
-    ../rtl/direction_control.sv
+    ../rtl/game/control.sv
+    ../rtl/game/map_control.sv
+    ../rtl/game/direction_control.sv
     ../rtl/uart/uart.sv
     ../rtl/uart/uart_rx.sv
     ../rtl/uart/uart_tx.sv
@@ -53,7 +53,7 @@ set sv_files {
     ../rtl/uart/fifo.sv
     ../rtl/uart/uart_encoder.sv 
     ../rtl/uart/uart_decoder.sv
-    ../rtl/player_selector.sv
+    ../rtl/game/player_selector.sv
     ../rtl/mux.sv
     rtl/top_vga_basys3.sv
 }

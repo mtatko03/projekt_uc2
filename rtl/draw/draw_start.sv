@@ -1,5 +1,7 @@
-/*
- * draws the game's start screen
+/**
+ * Author: Magdalena Tatko
+ * MTM UEC2
+ * Description: draws the game's start screen
 */ 
 
 `timescale 1 ns / 1 ps

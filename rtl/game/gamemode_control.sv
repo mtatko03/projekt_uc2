@@ -1,3 +1,8 @@
+/**
+ * Author: Agnieszka Wroblewska, Magdalena Tatko
+ * MTM UEC2
+ * Description: Control game mode
+ */
 `timescale 1ns/1ps
 
 import game_pkg::*;

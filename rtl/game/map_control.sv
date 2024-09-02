@@ -1,3 +1,9 @@
+/**
+ * Author: Agnieszka Wroblewska, Magdalena Tatko
+ * MTM UEC2
+ * Description: Map initailization
+ */
+
 `timescale 1ns/1ps
 
 
