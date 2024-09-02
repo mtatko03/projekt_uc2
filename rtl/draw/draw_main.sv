@@ -1,8 +1,5 @@
-/**
- * Author: Magdalena Tatko
- * MTM UEC2
- * Description:
- * The project draw main module.
+/*
+ * This module draws the appropriate game screen (start, gameplay, or win) based on the game state.
  */
 
  `timescale 1ns/1ps

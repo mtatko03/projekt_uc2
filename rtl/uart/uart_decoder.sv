@@ -1,4 +1,3 @@
-
 import game_pkg::*;
 
 module uart_decoder(

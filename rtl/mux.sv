@@ -1,10 +1,8 @@
-/**
- * Author: Agnieszka Wroblewska
- * MTM UEC2
- * Description: Multiplexer
- */
+//inports
 
 import game_pkg::*;
+
+//main module
 
 module mux(
     input wire clk,

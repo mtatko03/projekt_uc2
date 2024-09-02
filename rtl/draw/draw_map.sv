@@ -1,7 +1,5 @@
-/**
- * Author: Agnieszka Wroblewska, Magdalena Tatko
- * MTM UEC2
- * Description: Display a game map on a screen.
+/*
+ * Display a game map on a screen.
  */
 
 `timescale 1ns/1ps
