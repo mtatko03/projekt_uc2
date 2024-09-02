@@ -1,10 +1,8 @@
 Warnings, critical warnings and errors from synthesis and implementation
 
-Created: 2024-09-02 02:36:16
+Created: 2024-09-02 04:21:59
 
 ----SYNTHESIS----
-WARNING: [Synth 8-87] always_comb on 'nxt_direction_1_reg' did not result in combinational logic [rtl/direction_control.sv:41]
-WARNING: [Synth 8-87] always_comb on 'nxt_direction_2_reg' did not result in combinational logic [rtl/direction_control.sv:42]
 WARNING: [Synth 8-5856] 3D RAM map_reg  for this pattern/configuration is not supported. This will most likely be implemented in registers
 WARNING: [Synth 8-5856] 3D RAM map_nxt_reg  for this pattern/configuration is not supported. This will most likely be implemented in registers
 WARNING: [Synth 8-6014] Unused sequential element set_x.inc_reg was removed.  [rtl/mouse/MouseCtl.vhd:450]
@@ -27,8 +25,6 @@ WARNING: [Synth 8-7129] Port vga_in\.rgb[3] in module draw_map is either unconne
 WARNING: [Synth 8-7129] Port vga_in\.rgb[2] in module draw_map is either unconnected or has no load
 WARNING: [Synth 8-7129] Port vga_in\.rgb[1] in module draw_map is either unconnected or has no load
 WARNING: [Synth 8-7129] Port vga_in\.rgb[0] in module draw_map is either unconnected or has no load
-WARNING: [Synth 8-327] inferring latch for variable 'nxt_direction_1_reg' [rtl/direction_control.sv:41]
-WARNING: [Synth 8-327] inferring latch for variable 'nxt_direction_2_reg' [rtl/direction_control.sv:42]
 WARNING: [Synth 8-7129] Port read_data[3] in module uart_decoder is either unconnected or has no load
 
 ----IMPLEMENTATION----

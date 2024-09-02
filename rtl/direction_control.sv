@@ -32,8 +32,15 @@ always_ff@ (posedge clk) begin
 end
 
 always_comb begin
+
+        nxt_direction_1 = current_direction_1;
+        nxt_direction_2 = current_direction_2;
+        count_nxt = count;
+
     if(count >= clk_loop) begin
+
         case(selected_player)
+
         2'b01:begin
             case(current_direction_1)
                 WAIT: begin
@@ -112,8 +119,8 @@ always_comb begin
                 end
         
                 default:begin
-                        nxt_direction_1 = WAIT;
-                        nxt_direction_2 = WAIT; //jesli nie zadziala to nxt_direction_1 = current_direction_1;
+                        nxt_direction_1 = current_direction_1;
+                        nxt_direction_2 = current_direction_2; //jesli nie zadziala to nxt_direction_1 = current_direction_1;
                 end
                 endcase
             end
@@ -196,8 +203,8 @@ always_comb begin
                 end
         
             default:begin
-                    nxt_direction_2 = WAIT;
-                    nxt_direction_1 = WAIT;
+                    nxt_direction_2 = current_direction_2;
+                    nxt_direction_1 = current_direction_1;
                 end
             endcase
         end
